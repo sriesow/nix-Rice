@@ -1,0 +1,10 @@
+# Result symlinks
+result
+result-*
+
+# Hardware configuration (machine-specific)
+system/hardware-configuration.nix
+
+# Secrets
+*.age
+*.secret

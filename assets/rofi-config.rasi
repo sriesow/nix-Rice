@@ -1,0 +1,96 @@
+// Rofi configuration with Catppuccin Mocha theme
+
+configuration {
+    modi: "drun,run,window";
+    show-icons: true;
+    display-drun: "Applications";
+    display-run: "Run";
+    display-window: "Windows";
+    drun-display-format: "{name}";
+    font: "JetBrains Mono 11";
+}
+
+// Catppuccin Mocha colors
+* {
+    bg: #1E1E2EFF;
+    bg-alt: #181825FF;
+    fg: #CDD6F4FF;
+    fg-alt: #BAC2DEFF;
+
+    background-color: @bg;
+
+    border: 0;
+    margin: 0;
+    padding: 0;
+    spacing: 0;
+}
+
+window {
+    width: 35%;
+    border-color: #CBA6F7FF;
+    border: 2;
+    border-radius: 12;
+}
+
+element {
+    padding: 10 12;
+    text-color: @fg-alt;
+}
+
+element selected {
+    text-color: @fg;
+    background-color: #313244FF;
+    border-radius: 8;
+}
+
+element-text {
+    text-color: inherit;
+    vertical-align: 0.5;
+}
+
+element-icon {
+    size: 24;
+    padding: 0 10 0 0;
+}
+
+entry {
+    padding: 12;
+    text-color: @fg;
+    background-color: @bg-alt;
+    border-radius: 8;
+}
+
+inputbar {
+    children: [prompt, entry];
+    background-color: @bg;
+    border-radius: 8;
+    padding: 8;
+}
+
+listview {
+    columns: 1;
+    lines: 8;
+    cycle: false;
+    dynamic: true;
+    layout: vertical;
+    padding: 8 0;
+}
+
+mainbox {
+    children: [inputbar, listview];
+    background-color: @bg;
+    padding: 12;
+}
+
+prompt {
+    enabled: true;
+    padding: 12;
+    text-color: #CBA6F7FF;
+    background-color: @bg-alt;
+    border-radius: 8;
+}
+
+textbox-prompt-colon {
+    expand: false;
+    str: ":";
+}
