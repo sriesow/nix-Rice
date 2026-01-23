@@ -41,11 +41,7 @@
     wireplumber
     lm_sensors
 
-    # DankMaterialShell - Desktop shell for wayland (from unstable)
-    pkgs-unstable.dms-shell
-    quickshell
-    matugen
-    imagemagick
+    # Noctalia Shell will be configured via Home Manager with flake input
 
     # Wayland utilities
     wlr-randr

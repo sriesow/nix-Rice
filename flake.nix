@@ -1,5 +1,5 @@
 {
-  description = "NixOS configuration with niri and DankMaterialShell";
+  description = "NixOS configuration with niri and Noctalia Shell";
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
@@ -9,9 +9,14 @@
       url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, noctalia, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -41,7 +46,7 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.srie = import ./home/home.nix;
-              home-manager.extraSpecialArgs = { inherit pkgs-unstable; };
+              home-manager.extraSpecialArgs = { inherit inputs pkgs-unstable; };
             }
           ];
         };
@@ -59,7 +64,7 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.srie = import ./home/home.nix;
-              home-manager.extraSpecialArgs = { inherit pkgs-unstable; };
+              home-manager.extraSpecialArgs = { inherit inputs pkgs-unstable; };
             }
           ];
         };

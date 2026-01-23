@@ -17,6 +17,11 @@
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
 
+  # Hardware support for Noctalia
+  hardware.bluetooth.enable = true;
+  services.upower.enable = true;
+  services.power-profiles-daemon.enable = true;
+
   # Localization
   time.timeZone = "Asia/Kolkata";
   i18n.defaultLocale = "en_IN";

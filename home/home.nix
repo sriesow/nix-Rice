@@ -15,6 +15,7 @@
     ./programs/alacritty.nix
     ./programs/niri.nix
     ./programs/rofi.nix
+    ./programs/noctalia.nix
   ];
 
   # Let Home Manager install and manage itself

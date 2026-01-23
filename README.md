@@ -1,14 +1,15 @@
-# NixOS Configuration - Niri + DankMaterialShell
+# NixOS Configuration - Niri + Noctalia Shell
 
-Modular NixOS configuration with niri compositor, DankMaterialShell, and Catppuccin theme.
+Modular NixOS configuration with niri compositor, Noctalia Shell, and beautiful lavender aesthetic.
 
 ## Features
 
 - **Desktop Environment:** Niri (scrollable-tiling Wayland compositor)
-- **Shell:** DankMaterialShell with Catppuccin Mocha theme
+- **Shell:** Noctalia - A sleek and minimal desktop shell for Wayland
 - **Terminal:** Alacritty with Starship prompt
-- **Applications:** Brave, Chrome, VLC, Slack, Postman, Logseq, Sublime Text, and more
+- **Applications:** Brave, Chrome, Firefox, VLC, Slack, Postman, Logseq, Sublime Text
 - **Cloud Tools:** Google Cloud SDK, Azure CLI, AWS CLI
+- **Terminal Tools:** Starship, Zoxide, Eza, Fzf
 - **Docker:** Full Docker support with compose
 - **VPN:** OpenVPN configured
 
@@ -34,8 +35,11 @@ nixos-config/
 │       ├── alacritty.nix       # Alacritty terminal
 │       ├── niri.nix            # Niri user config
 │       ├── rofi.nix            # Rofi launcher
-│       ├── starship.nix        # Starship prompt
-│       └── shell.nix           # Shell (bash/zsh) config
+│       └── noctalia.nix        # Noctalia shell config
+├── assets/
+│   ├── Clearnight.jpg          # Wallpaper
+│   ├── niri-config.kdl         # Niri configuration
+│   └── rofi-config.rasi        # Rofi configuration
 └── README.md                    # This file
 ```
 
@@ -72,17 +76,22 @@ sudo nixos-rebuild switch --flake ~/nixos-config#nixos-workstation
 
 ## Terminal Tools
 
-- **starship:** Beautiful shell prompt
+- **starship:** Beautiful cross-shell prompt with customization
 - **zoxide:** Smart directory jumper (`z` command)
+- **eza:** Modern ls replacement with icons and git integration
+- **fzf:** Fuzzy finder for command history and files
 - **docker:** Container management
 - **gcloud, az, aws:** Cloud CLIs
 
 ## Theme
 
-Catppuccin Mocha throughout:
-- Primary: `#CBA6F7` (Mauve)
-- Background: `#1E1E2E`
-- Accent colors match Catppuccin palette
+Noctalia features a beautiful warm lavender aesthetic:
+- Quiet by design philosophy - stays out of your way
+- Modular status bar with workspace indicators
+- Native support for Niri compositor
+- Notification system with history panel
+- Application launcher and control panels
+- Fully customizable through settings panel
 
 ## License
 
