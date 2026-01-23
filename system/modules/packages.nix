@@ -21,9 +21,9 @@
 
     # Terminal
     alacritty
+    fish
 
-    # Application launcher
-    rofi
+    # Noctalia has built-in app launcher (no rofi needed)
 
     # Screenshots and screen recording
     grim
@@ -31,8 +31,8 @@
     wl-clipboard
 
     # File manager
-    xfce.thunar
-    xfce.thunar-volman
+    kdePackages.dolphin
+    kdePackages.dolphin-plugins
 
     # System utilities
     pavucontrol
@@ -82,26 +82,39 @@
     starship
     zoxide
     eza
-    fzf
+    # Fish has built-in fuzzy finder, no fzf needed
 
     # Cursor theme
     catppuccin-cursors
   ];
 
-  # Shell configuration with modern terminal tools
-  programs.bash.interactiveShellInit = ''
-    # Zoxide - smart directory jumper
-    eval "$(zoxide init bash)"
+  # Fish shell as default
+  programs.fish = {
+    enable = true;
+    interactiveShellInit = ''
+      # Starship prompt
+      starship init fish | source
 
-    # Eza - modern ls replacement
-    alias ls='eza --icons'
-    alias ll='eza -l --icons'
-    alias la='eza -la --icons'
-    alias lt='eza --tree --icons'
+      # Zoxide - smart directory jumper
+      zoxide init fish | source
 
-    # Fzf - fuzzy finder
-    eval "$(fzf --bash)"
-  '';
+      # Eza functions (override built-in ls)
+      functions --erase ls ll la 2>/dev/null
+
+      function ls
+        eza --icons $argv
+      end
+      function ll
+        eza -l --icons $argv
+      end
+      function la
+        eza -la --icons $argv
+      end
+      function lt
+        eza --tree --icons $argv
+      end
+    '';
+  };
 
   # Starship prompt
   programs.starship = {

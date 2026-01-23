@@ -53,8 +53,8 @@ layout {
     }
 }
 
-// Spawn programs on startup - DMS first for fastest topbar
-spawn-at-startup "bash" "-c" "sleep 0.1 && dms run --session &"
+// Spawn programs on startup
+// Noctalia Shell is started via systemd from Home Manager
 spawn-at-startup "bash" "-c" "~/.config/wallpapers/set-wallpaper.sh &"
 spawn-at-startup "nm-applet" "--indicator"
 
@@ -107,10 +107,8 @@ animations {
 binds {
     // Mod key (Super/Windows key)
     Mod+Return { spawn "alacritty"; }
-    Mod+D { spawn "rofi" "-show" "drun"; }
-    Mod+R { spawn "rofi" "-show" "run"; }
-    Mod+W { spawn "rofi" "-show" "window"; }
-    Mod+E { spawn "nautilus"; }
+    Mod+D { spawn "noctalia-shell" "-t" "launcher"; }
+    Mod+E { spawn "dolphin"; }
     Mod+B { spawn "firefox"; }
     Mod+Q { close-window; }
 

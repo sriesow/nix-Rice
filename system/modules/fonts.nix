@@ -5,7 +5,8 @@
     noto-fonts
     noto-fonts-color-emoji
     font-awesome
-    jetbrains-mono
-    fira-code
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.fira-code
+    nerd-fonts.symbols-only
   ];
 }

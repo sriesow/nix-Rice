@@ -14,8 +14,8 @@
   imports = [
     ./programs/alacritty.nix
     ./programs/niri.nix
-    ./programs/rofi.nix
     ./programs/noctalia.nix
+    # Rofi removed - using Noctalia's built-in app launcher
   ];
 
   # Let Home Manager install and manage itself

@@ -67,6 +67,7 @@
     isNormalUser = true;
     description = "srie";
     extraGroups = [ "networkmanager" "wheel" "video" "docker" ];
+    shell = pkgs.fish;
   };
 
   # Firefox

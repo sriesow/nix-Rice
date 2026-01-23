@@ -5,11 +5,12 @@ Modular NixOS configuration with niri compositor, Noctalia Shell, and beautiful 
 ## Features
 
 - **Desktop Environment:** Niri (scrollable-tiling Wayland compositor)
-- **Shell:** Noctalia - A sleek and minimal desktop shell for Wayland
+- **Desktop Shell:** Noctalia - Sleek and minimal Wayland desktop shell with built-in app launcher
 - **Terminal:** Alacritty with Starship prompt
+- **Shell:** Fish - Friendly interactive shell with built-in fuzzy search
 - **Applications:** Brave, Chrome, Firefox, VLC, Slack, Postman, Logseq, Sublime Text
 - **Cloud Tools:** Google Cloud SDK, Azure CLI, AWS CLI
-- **Terminal Tools:** Starship, Zoxide, Eza, Fzf
+- **Terminal Tools:** Starship, Zoxide, Eza
 - **Docker:** Full Docker support with compose
 - **VPN:** OpenVPN configured
 
