@@ -107,7 +107,8 @@ animations {
 binds {
     // Mod key (Super/Windows key)
     Mod+Return { spawn "alacritty"; }
-    Mod+D { spawn "noctalia-shell" "-t" "launcher"; }
+    Mod+Space { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
+    Mod+V { spawn "noctalia-shell" "ipc" "call" "launcher" "clipboard"; }
     Mod+E { spawn "dolphin"; }
     Mod+B { spawn "firefox"; }
     Mod+Q { close-window; }

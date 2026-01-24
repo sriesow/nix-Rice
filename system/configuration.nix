@@ -66,7 +66,7 @@
   users.users.srie = {
     isNormalUser = true;
     description = "srie";
-    extraGroups = [ "networkmanager" "wheel" "video" "docker" ];
+    extraGroups = [ "networkmanager" "wheel" "video" "docker" "vboxsf" ];
     shell = pkgs.fish;
   };
 

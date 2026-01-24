@@ -64,7 +64,7 @@
     logseq
     sublime4
     solaar
-    caffeine-ng
+    # Noctalia has built-in keep awake feature (removed caffeine-ng)
 
     # Network & VPN
     openvpn
