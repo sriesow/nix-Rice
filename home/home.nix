@@ -15,6 +15,7 @@
     ./programs/alacritty.nix
     ./programs/niri.nix
     ./programs/noctalia.nix
+    ./programs/vscode.nix
     # Rofi removed - using Noctalia's built-in app launcher
   ];
 
@@ -43,5 +44,7 @@
   # Environment variables
   home.sessionVariables = {
     EDITOR = "vim";
+    # Enable Wayland support for Electron apps (VS Code, etc.)
+    NIXOS_OZONE_WL = "1";
   };
 }

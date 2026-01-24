@@ -10,7 +10,7 @@
 
     # Development
     claude-code
-    vscode
+    # VS Code managed by Home Manager for better desktop integration
 
     # Niri and Wayland essentials
     niri
@@ -31,8 +31,8 @@
     wl-clipboard
 
     # File manager
-    kdePackages.dolphin
-    kdePackages.dolphin-plugins
+    nautilus
+    sushi  # File previewer for Nautilus
 
     # System utilities
     pavucontrol

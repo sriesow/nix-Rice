@@ -58,10 +58,41 @@ layout {
 spawn-at-startup "bash" "-c" "~/.config/wallpapers/set-wallpaper.sh &"
 spawn-at-startup "nm-applet" "--indicator"
 
-// Catppuccin themed window rules
+// Catppuccin themed window rules with opacity for aesthetic
 window-rule {
     geometry-corner-radius 12
     clip-to-geometry true
+}
+
+// Opacity rules for a nice aesthetic look
+window-rule {
+    match app-id="Alacritty"
+    opacity 0.85
+}
+
+window-rule {
+    match app-id="Code"
+    opacity 0.90
+}
+
+window-rule {
+    match app-id="org.gnome.Nautilus"
+    opacity 0.90
+}
+
+window-rule {
+    match app-id="firefox"
+    opacity 0.95
+}
+
+window-rule {
+    match app-id="brave-browser"
+    opacity 0.95
+}
+
+window-rule {
+    match app-id="google-chrome"
+    opacity 0.95
 }
 
 // Animations - smooth and material
@@ -109,7 +140,7 @@ binds {
     Mod+Return { spawn "alacritty"; }
     Mod+Space { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
     Mod+V { spawn "noctalia-shell" "ipc" "call" "launcher" "clipboard"; }
-    Mod+E { spawn "dolphin"; }
+    Mod+E { spawn "nautilus"; }
     Mod+B { spawn "firefox"; }
     Mod+Q { close-window; }
 

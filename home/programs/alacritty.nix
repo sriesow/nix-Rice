@@ -6,7 +6,7 @@
     settings = {
       # Window settings
       window = {
-        opacity = 0.95;
+        # Opacity managed by Niri window rules
         padding = {
           x = 12;
           y = 12;
