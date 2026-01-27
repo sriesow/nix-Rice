@@ -16,6 +16,10 @@
     ./programs/niri.nix
     ./programs/noctalia.nix
     ./programs/vscode.nix
+    ./programs/firefox.nix
+    ./programs/git.nix
+    ./programs/starship.nix
+    ./programs/fish.nix
     # Rofi removed - using Noctalia's built-in app launcher
   ];
 
@@ -24,7 +28,13 @@
 
   # Additional packages specific to user environment
   home.packages = with pkgs; [
-    # Add user-specific packages here
+    # User applications
+    logseq
+    sublime4
+
+    # CLI tools
+    zoxide
+    eza
   ];
 
   # Home Manager managed dotfiles

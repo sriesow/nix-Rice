@@ -4,13 +4,13 @@
   environment.systemPackages = with pkgs; [
     # Essential tools
     wget
-    git
     vim
     uv
 
     # Development
     claude-code
     # VS Code managed by Home Manager for better desktop integration
+    # Git managed by Home Manager for better config management
 
     # Niri and Wayland essentials
     niri
@@ -19,9 +19,8 @@
     libGL
     libGLU
 
-    # Terminal
-    alacritty
-    fish
+    # Terminal (Alacritty managed by Home Manager)
+    # Fish shell managed by Home Manager
 
     # Noctalia has built-in app launcher (no rofi needed)
 
@@ -52,17 +51,16 @@
     libjpeg
     libwebp
 
-    # Browsers
+    # Browsers (kept system-wide for multi-user access)
     brave
-    firefox
+    # Firefox managed by Home Manager for better profile management
     google-chrome
 
     # Applications
     vlc
     slack
     postman
-    logseq
-    sublime4
+    # Logseq and Sublime4 managed by Home Manager
     solaar
     # Noctalia has built-in keep awake feature (removed caffeine-ng)
 
@@ -78,69 +76,16 @@
     azure-cli
     awscli2
 
-    # Terminal enhancements
-    starship
-    zoxide
-    eza
-    # Fish has built-in fuzzy finder, no fzf needed
+    # Terminal enhancements managed by Home Manager:
+    # - starship (prompt)
+    # - zoxide (directory jumper)
+    # - eza (ls replacement)
 
     # Cursor theme
     catppuccin-cursors
   ];
 
-  # Fish shell as default
-  programs.fish = {
-    enable = true;
-    interactiveShellInit = ''
-      # Starship prompt
-      starship init fish | source
-
-      # Zoxide - smart directory jumper
-      zoxide init fish | source
-
-      # Eza functions (override built-in ls)
-      functions --erase ls ll la 2>/dev/null
-
-      function ls
-        eza --icons $argv
-      end
-      function ll
-        eza -l --icons $argv
-      end
-      function la
-        eza -la --icons $argv
-      end
-      function lt
-        eza --tree --icons $argv
-      end
-    '';
-  };
-
-  # Starship prompt
-  programs.starship = {
-    enable = true;
-    settings = {
-      add_newline = true;
-      character = {
-        success_symbol = "[➜](bold green)";
-        error_symbol = "[➜](bold red)";
-      };
-      directory = {
-        truncation_length = 3;
-        truncate_to_repo = true;
-        style = "bold cyan";
-      };
-      git_branch = {
-        symbol = " ";
-        style = "bold purple";
-      };
-      git_status = {
-        style = "bold yellow";
-      };
-      cmd_duration = {
-        min_time = 500;
-        format = "took [$duration](bold yellow)";
-      };
-    };
-  };
+  # Fish shell as default - keep system-wide to set default shell
+  # Actual Fish configuration managed by Home Manager
+  programs.fish.enable = true;
 }
