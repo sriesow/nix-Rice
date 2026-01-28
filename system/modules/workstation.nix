@@ -1,19 +1,15 @@
 { config, pkgs, ... }:
 
 {
+  imports = [
+    ./nvidia.nix  # NVIDIA RTX 2080 Ti configuration with CUDA support
+  ];
+
   # Workstation-specific hardware configuration
-  # This will be used for the production deployment
-
-  # GPU drivers - uncomment based on your GPU
-  # For NVIDIA:
-  # services.xserver.videoDrivers = [ "nvidia" ];
-  # hardware.nvidia.modesetting.enable = true;
-
-  # For AMD:
-  # services.xserver.videoDrivers = [ "amdgpu" ];
-
-  # For Intel:
-  # services.xserver.videoDrivers = [ "intel" ];
+  # This will be used for the production deployment with:
+  # - 32 GB RAM
+  # - NVIDIA RTX 2080 Ti
+  # - CUDA support enabled
 
   # Additional workstation-specific settings can be added here
 }

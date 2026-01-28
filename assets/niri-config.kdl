@@ -67,7 +67,7 @@ window-rule {
 // Opacity rules for a nice aesthetic look
 window-rule {
     match app-id="Alacritty"
-    opacity 0.85
+    opacity 0.75
 }
 
 window-rule {
