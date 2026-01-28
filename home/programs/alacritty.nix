@@ -30,6 +30,9 @@
           style = "Italic";
         };
         size = 11.0;
+
+        # Disable built-in box drawing to use font glyphs
+        builtin_box_drawing = false;
       };
 
       # Cursor
