@@ -18,15 +18,15 @@
       # Font configuration
       font = {
         normal = {
-          family = "JetBrainsMono Nerd Font";
+          family = "JetBrainsMono Nerd Font Mono";
           style = "Regular";
         };
         bold = {
-          family = "JetBrainsMono Nerd Font";
+          family = "JetBrainsMono Nerd Font Mono";
           style = "Bold";
         };
         italic = {
-          family = "JetBrainsMono Nerd Font";
+          family = "JetBrainsMono Nerd Font Mono";
           style = "Italic";
         };
         size = 11.0;
