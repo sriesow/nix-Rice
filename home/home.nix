@@ -56,5 +56,7 @@
     EDITOR = "vim";
     # Enable Wayland support for Electron apps (VS Code, etc.)
     NIXOS_OZONE_WL = "1";
+    # Enable 24-bit true color support in terminals
+    COLORTERM = "truecolor";
   };
 }

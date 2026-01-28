@@ -7,6 +7,9 @@
     shellInit = ''
       # Disable greeting
       set fish_greeting
+
+      # Enable 24-bit color support
+      set -gx COLORTERM truecolor
     '';
 
     interactiveShellInit = ''
