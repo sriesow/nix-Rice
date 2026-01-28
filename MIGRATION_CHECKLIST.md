@@ -1,5 +1,47 @@
 # NixOS Migration Checklist - Linux Mint to NixOS Workstation
 
+## VirtualBox VM Limitation: Clipboard Sharing
+
+If you're testing in VirtualBox and clipboard sharing isn't working, use this prompt on your host machine:
+
+---
+
+**Copy this to Claude on your Linux Mint host machine:**
+
+I'm continuing a NixOS migration conversation from a VirtualBox VM. I'm planning to install NixOS on my workstation (32GB RAM, NVIDIA RTX 2080 Ti) alongside Linux Mint in a dual-boot setup.
+
+I need help calculating exact partition sizes for NixOS based on my current disk layout.
+
+Please analyze my disk layout and recommend exact partition sizes for:
+- NixOS Root (/) - recommended 150-200 GB
+- NixOS Home (/home) - remaining space
+- Swap - recommended 48-64 GB for hibernation
+
+Here's my current disk layout:
+
+```bash
+# Run these commands on Linux Mint and paste output:
+lsblk -o NAME,SIZE,TYPE,FSTYPE,MOUNTPOINT
+
+sudo parted -l
+
+df -h
+```
+
+**After you provide the output, I need:**
+1. Exact partition sizes calculated based on available free space
+2. Specific partition device names (e.g., /dev/sda4, /dev/sda5)
+3. Commands to create these partitions during NixOS installation
+
+**My NixOS config repository:** https://github.com/sriesow/nix-Rice (noctalia branch)
+
+The config already has:
+- NVIDIA RTX 2080 Ti configuration with CUDA support in `system/modules/nvidia.nix`
+- Migration checklist in `MIGRATION_CHECKLIST.md`
+- Workstation configuration that imports the NVIDIA module
+
+---
+
 ## Pre-Migration: Data Backup (Do This First!)
 
 ### Critical Data to Backup
