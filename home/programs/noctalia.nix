@@ -149,6 +149,9 @@
               id = "ControlCenter";
               useDistroLogo = false;
             }
+            {
+              id = "SessionMenu";
+            }
           ];
         };
         screenOverrides = [];
