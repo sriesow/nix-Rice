@@ -20,6 +20,7 @@
     ./programs/git.nix
     ./programs/starship.nix
     ./programs/fish.nix
+    ./programs/gtk.nix
     # Rofi removed - using Noctalia's built-in app launcher
   ];
 
