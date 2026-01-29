@@ -5,3 +5,5 @@ result-*
 # Secrets
 *.age
 *.secret
+
+system/hardware-configuration.nix

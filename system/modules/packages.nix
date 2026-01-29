@@ -9,6 +9,7 @@
 
     # Development
     claude-code
+    nixfmt-rfc-style  # Nix formatter
     # VS Code managed by Home Manager for better desktop integration
     # Git managed by Home Manager for better config management
 

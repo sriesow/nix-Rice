@@ -39,7 +39,7 @@
   };
 
   # Enable CUDA support for GPU computing/ML workloads
-  nixpkgs.config.cudaSupport = true;
+  nixpkgs.config.cudaSupport = false;
 
   # Environment variables for Wayland + NVIDIA
   environment.sessionVariables = {
