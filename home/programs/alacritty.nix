@@ -7,6 +7,7 @@
       # Window settings
       window = {
         # Opacity managed by Niri window rules
+        opacity = 1.0;
         padding = {
           x = 12;
           y = 12;
@@ -127,8 +128,14 @@
         };
 
         indexed_colors = [
-          { index = 16; color = "#FAB387"; }
-          { index = 17; color = "#F5E0DC"; }
+          {
+            index = 16;
+            color = "#FAB387";
+          }
+          {
+            index = 17;
+            color = "#F5E0DC";
+          }
         ];
       };
 

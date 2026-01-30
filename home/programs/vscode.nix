@@ -17,7 +17,6 @@
         ms-python.vscode-pylance
 
         # General development
-        vscodevim.vim
         eamodio.gitlens
 
         # Nix support
@@ -32,8 +31,8 @@
         "window.titleBarStyle" = "custom";
         "window.menuBarVisibility" = "toggle";
         "editor.fontFamily" = "'JetBrainsMono Nerd Font', 'monospace'";
-        "editor.fontSize" = 13;
-        "editor.minimap.enabled" = false;
+        "editor.fontSize" = 16;
+        "editor.minimap.enabled" = true;
         "workbench.startupEditor" = "none";
         "telemetry.telemetryLevel" = "off";
 

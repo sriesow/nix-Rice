@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   # Enable NVIDIA drivers for RTX 2080 Ti
@@ -35,7 +40,7 @@
   # OpenGL/Graphics settings
   hardware.graphics = {
     enable = true;
-    enable32Bit = true;  # For 32-bit applications and Steam games
+    enable32Bit = true; # For 32-bit applications and Steam games
   };
 
   # Enable CUDA support for GPU computing/ML workloads
@@ -70,18 +75,23 @@
 
   # Early KMS (Kernel Mode Setting) for NVIDIA
   # This loads NVIDIA driver early in boot process
-  boot.initrd.kernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
+  boot.initrd.kernelModules = [
+    "nvidia"
+    "nvidia_modeset"
+    "nvidia_uvm"
+    "nvidia_drm"
+  ];
 
   # Blacklist nouveau driver to prevent conflicts (optional but recommended)
   boot.blacklistedKernelModules = [ "nouveau" ];
 
   # Additional packages for NVIDIA and CUDA
   environment.systemPackages = with pkgs; [
-    nvtopPackages.nvidia      # GPU monitoring tool
-    cudaPackages.cudatoolkit  # CUDA toolkit
-    cudaPackages.cudnn        # CUDA Deep Neural Network library
-    libva-utils               # VA-API utilities for video acceleration
-    vdpauinfo                 # VDPAU utilities for video acceleration
+    nvtopPackages.nvidia # GPU monitoring tool
+    cudaPackages.cudatoolkit # CUDA toolkit
+    cudaPackages.cudnn # CUDA Deep Neural Network library
+    libva-utils # VA-API utilities for video acceleration
+    vdpauinfo # VDPAU utilities for video acceleration
 
     # Development tools (optional, uncomment if needed)
     # cudaPackages.cuda_nsight        # NVIDIA Nsight Systems

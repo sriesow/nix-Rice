@@ -1,4 +1,9 @@
-{ config, pkgs, inputs, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
   # Import Noctalia Home Manager module
@@ -17,16 +22,16 @@
 
       bar = {
         position = "top";
-        monitors = [];
-        density = "default";
-        showOutline = false;
+        monitors = [ ];
+        density = "comfortable";
+        showOutline = true;
         showCapsule = true;
         capsuleOpacity = 1;
-        backgroundOpacity = 0.93;
-        useSeparateOpacity = false;
-        floating = false;
-        marginVertical = 4;
-        marginHorizontal = 4;
+        backgroundOpacity = 0;
+        useSeparateOpacity = true;
+        floating = true;
+        marginVertical = 0;
+        marginHorizontal = 8;
         outerCorners = true;
         exclusive = true;
         hideOnOverview = false;
@@ -35,15 +40,6 @@
             {
               icon = "rocket";
               id = "Launcher";
-              usePrimaryColor = false;
-            }
-            {
-              customFont = "";
-              formatHorizontal = "HH:mm ddd, MMM dd";
-              formatVertical = "HH mm - dd MM";
-              id = "Clock";
-              tooltipFormat = "HH:mm ddd, MMM dd";
-              useCustomFont = false;
               usePrimaryColor = false;
             }
             {
@@ -61,6 +57,20 @@
               showSwapUsage = false;
               useMonospaceFont = true;
               usePrimaryColor = false;
+            }
+            {
+              characterCount = 2;
+              colorizeIcons = false;
+              enableScrollWheel = true;
+              followFocusedScreen = false;
+              groupedBorderOpacity = 1;
+              hideUnoccupied = false;
+              iconScale = 0.8;
+              id = "Workspace";
+              labelMode = "index";
+              showApplications = false;
+              showLabelsOnlyWhenOccupied = true;
+              unfocusedIconsOpacity = 1;
             }
             {
               colorizeIcons = false;
@@ -92,28 +102,28 @@
           ];
           center = [
             {
-              characterCount = 2;
-              colorizeIcons = false;
-              enableScrollWheel = true;
-              followFocusedScreen = false;
-              groupedBorderOpacity = 1;
-              hideUnoccupied = false;
-              iconScale = 0.8;
-              id = "Workspace";
-              labelMode = "index";
-              showApplications = false;
-              showLabelsOnlyWhenOccupied = true;
-              unfocusedIconsOpacity = 1;
+              customFont = "";
+              formatHorizontal = "dd-MMM-yyyy h:mm AP dddd";
+              formatVertical = "h mm - dd MMM";
+              id = "Clock";
+              tooltipFormat = "dd-MMM-yyyy h:mm AP dddd";
+              useCustomFont = false;
+              usePrimaryColor = false;
+            }
+            {
+              id = "WallpaperSelector";
             }
           ];
           right = [
             {
-              blacklist = [];
+              blacklist = [
+                "nm-applet"
+              ];
               colorizeIcons = false;
               drawerEnabled = true;
               hidePassive = false;
               id = "Tray";
-              pinned = [];
+              pinned = [ ];
             }
             {
               hideWhenZero = false;
@@ -122,14 +132,7 @@
               showUnreadBadge = true;
             }
             {
-              deviceNativePath = "";
-              displayMode = "onhover";
-              hideIfIdle = false;
-              hideIfNotDetected = true;
-              id = "Battery";
-              showNoctaliaPerformance = false;
-              showPowerProfiles = false;
-              warningThreshold = 30;
+              id = "KeepAwake";
             }
             {
               displayMode = "onhover";
@@ -138,7 +141,15 @@
             }
             {
               displayMode = "onhover";
-              id = "Brightness";
+              id = "Bluetooth";
+            }
+            {
+              displayMode = "onhover";
+              id = "Network";
+            }
+            {
+              displayMode = "onhover";
+              id = "VPN";
             }
             {
               colorizeDistroLogo = false;
@@ -150,11 +161,12 @@
               useDistroLogo = false;
             }
             {
+              colorName = "error";
               id = "SessionMenu";
             }
           ];
         };
-        screenOverrides = [];
+        screenOverrides = [ ];
       };
 
       general = {
@@ -182,12 +194,12 @@
         showChangelogOnStartup = true;
         telemetryEnabled = false;
         enableLockScreenCountdown = true;
-        lockScreenCountdownDuration = 10000;
+        lockScreenCountdownDuration = 5000;
       };
 
       ui = {
-        fontDefault = "Sans Serif";
-        fontFixed = "monospace";
+        fontDefault = "FiraCode Nerd Font";
+        fontFixed = "FiraCode Nerd Font";
         fontDefaultScale = 1;
         fontFixedScale = 1;
         tooltipsEnabled = true;
@@ -200,13 +212,12 @@
         bluetoothHideUnnamedDevices = false;
         boxBorderEnabled = false;
       };
-
       location = {
-        name = "Tokyo";
+        name = "Chennai, TN";
         weatherEnabled = true;
         weatherShowEffects = true;
         useFahrenheit = false;
-        use12hourFormat = false;
+        use12hourFormat = true;
         showWeekNumberInCalendar = false;
         showCalendarEvents = true;
         showCalendarWeather = true;
@@ -237,7 +248,7 @@
         enabled = true;
         overviewEnabled = false;
         directory = "/home/srie/Pictures/Wallpapers";
-        monitorDirectories = [];
+        monitorDirectories = [ ];
         enableMultiMonitorDirectories = false;
         showHiddenFiles = false;
         viewMode = "single";
@@ -273,7 +284,7 @@
         enableClipPreview = true;
         clipboardWrapText = true;
         position = "center";
-        pinnedApps = [];
+        pinnedApps = [ ];
         useApp2Unit = false;
         sortByMostUsed = true;
         terminalCommand = "xterm -e";
@@ -383,8 +394,8 @@
         floatingRatio = 1;
         size = 1;
         onlySameOutput = true;
-        monitors = [];
-        pinnedApps = [];
+        monitors = [ ];
+        pinnedApps = [ ];
         colorizeIcons = false;
         pinnedStatic = false;
         inactiveIndicators = false;
@@ -403,35 +414,47 @@
 
       sessionMenu = {
         enableCountdown = true;
-        countdownDuration = 10000;
+        countdownDuration = 5000;
         position = "center";
         showHeader = true;
-        largeButtonsStyle = false;
+        largeButtonsStyle = true;
         largeButtonsLayout = "grid";
-        showNumberLabels = true;
+        showNumberLabels = false;
         powerOptions = [
           {
             action = "lock";
-            enabled = true;
-          }
-          {
-            action = "suspend";
-            enabled = true;
-          }
-          {
-            action = "hibernate";
-            enabled = true;
-          }
-          {
-            action = "reboot";
+            command = "";
+            countdownEnabled = true;
             enabled = true;
           }
           {
             action = "logout";
+            command = "";
+            countdownEnabled = true;
+            enabled = true;
+          }
+          {
+            action = "suspend";
+            command = "";
+            countdownEnabled = true;
+            enabled = false;
+          }
+          {
+            action = "hibernate";
+            command = "";
+            countdownEnabled = true;
+            enabled = false;
+          }
+          {
+            action = "reboot";
+            command = "";
+            countdownEnabled = true;
             enabled = true;
           }
           {
             action = "shutdown";
+            command = "";
+            countdownEnabled = true;
             enabled = true;
           }
         ];
@@ -439,18 +462,18 @@
 
       notifications = {
         enabled = true;
-        monitors = [];
+        monitors = [ ];
         location = "top_right";
         overlayLayer = true;
-        backgroundOpacity = 1;
-        respectExpireTimeout = false;
+        backgroundOpacity = 0;
+        respectExpireTimeout = true;
         lowUrgencyDuration = 3;
-        normalUrgencyDuration = 8;
-        criticalUrgencyDuration = 15;
+        normalUrgencyDuration = 5;
+        criticalUrgencyDuration = 8;
         enableKeyboardLayoutToast = true;
         saveToHistory = {
-          low = true;
-          normal = true;
+          low = false;
+          normal = false;
           critical = true;
         };
         sounds = {
@@ -476,7 +499,7 @@
           1
           2
         ];
-        monitors = [];
+        monitors = [ ];
       };
 
       audio = {
@@ -484,7 +507,7 @@
         volumeOverdrive = false;
         cavaFrameRate = 30;
         visualizerType = "linear";
-        mprisBlacklist = [];
+        mprisBlacklist = [ ];
         preferredPlayer = "";
         volumeFeedback = false;
       };
@@ -496,8 +519,8 @@
       };
 
       colorSchemes = {
-        useWallpaperColors = false;
-        predefinedScheme = "Noctalia (default)";
+        useWallpaperColors = true;
+        predefinedScheme = "Catppuccin";
         darkMode = true;
         schedulingMode = "off";
         manualSunrise = "06:30";
@@ -507,7 +530,7 @@
       };
 
       templates = {
-        activeTemplates = [];
+        activeTemplates = [ ];
         enableUserTheming = false;
       };
 
@@ -536,7 +559,7 @@
       desktopWidgets = {
         enabled = false;
         gridSnap = false;
-        monitorWidgets = [];
+        monitorWidgets = [ ];
       };
     };
   };

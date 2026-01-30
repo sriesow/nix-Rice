@@ -1,4 +1,9 @@
-{ config, pkgs, pkgs-unstable, ... }:
+{
+  config,
+  pkgs,
+  pkgs-unstable,
+  ...
+}:
 
 {
   imports = [
@@ -27,7 +32,9 @@
   # Networking
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
-
+  networking.networkmanager.plugins = with pkgs; [
+    networkmanager-openvpn
+  ];
   # Hardware support for Noctalia
   hardware.bluetooth.enable = true;
   services.upower.enable = true;
@@ -77,12 +84,19 @@
   users.users.srie = {
     isNormalUser = true;
     description = "srie";
-    extraGroups = [ "networkmanager" "wheel" "video" "docker" "vboxsf" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "video"
+      "docker"
+      "vboxsf"
+    ];
     shell = pkgs.fish;
   };
 
   # Firefox
   programs.firefox.enable = true;
+  programs.nix-ld.enable = true;
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
@@ -91,7 +105,10 @@
   ];
 
   # Enable flakes
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # XDG portal
   xdg.portal = {
@@ -106,7 +123,7 @@
   security.sudo.wheelNeedsPassword = false;
 
   # OpenVPN
-  services.openvpn.servers = {};
+  services.openvpn.servers = { };
 
   # System version
   system.stateVersion = "25.11";

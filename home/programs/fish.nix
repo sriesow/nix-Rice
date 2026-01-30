@@ -38,6 +38,49 @@
         eza --tree --icons $argv
       end
 
+      # Nix cleanup functions
+      function nix-cleanup
+        echo "🧹 Starting full Nix cleanup..."
+        set -l before (du -sh /nix/store 2>/dev/null | awk '{print $1}')
+        echo "Store size before: $before"
+        echo ""
+
+        echo "📦 Deleting old generations..."
+        sudo nix-collect-garbage --delete-old
+
+        echo "🗑️  Running garbage collection..."
+        nix-store --gc
+
+        echo "⚡ Optimizing store..."
+        nix-store --optimize
+
+        set -l after (du -sh /nix/store 2>/dev/null | awk '{print $1}')
+        echo ""
+        echo "✅ Cleanup complete!"
+        echo "Store size after: $after"
+      end
+
+      function nix-gc
+        echo "🗑️  Running garbage collection..."
+        nix-collect-garbage --delete-old
+        nix-store --gc
+        echo "✅ Done!"
+      end
+
+      function nix-optimize
+        echo "⚡ Optimizing Nix store..."
+        nix-store --optimize
+        echo "✅ Done!"
+      end
+
+      function nix-list-gens
+        echo "📋 System generations:"
+        sudo nix-env --list-generations --profile /nix/var/nix/profiles/system
+        echo ""
+        echo "📋 Home-manager generations:"
+        home-manager generations
+      end
+
       # Custom aliases
       alias g='git'
       alias vim='vim'
@@ -47,8 +90,8 @@
     shellAliases = {
       ".." = "cd ..";
       "..." = "cd ../..";
-      "nixos-rebuild" = "sudo nixos-rebuild switch --flake /home/srie/nixos-config#nixos-vbox";
-      "nixos-update" = "cd /home/srie/nixos-config && nix flake update && sudo nixos-rebuild switch --flake .#nixos-vbox";
+      "nixos-rebuild" = "sudo nixos-rebuild switch --flake /home/srie/Documents/nix-Rice#nixos-workstation";
+      "nixos-update" = "cd /home/srie/Documents/nix-Rice && nix flake update && sudo nixos-rebuild switch --flake .#nixos-workstation";
     };
   };
 }
