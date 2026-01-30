@@ -17,7 +17,7 @@
       starship init fish | source
 
       # Zoxide - smart directory jumper
-      zoxide init fish | source
+      zoxide init fish --cmd cd | source
 
       # Eza functions (override built-in ls)
       functions --erase ls ll la 2>/dev/null
@@ -90,8 +90,11 @@
     shellAliases = {
       ".." = "cd ..";
       "..." = "cd ../..";
-      "nixos-rebuild" = "sudo nixos-rebuild switch --flake /home/srie/Documents/nix-Rice#nixos-workstation";
-      "nixos-update" = "cd /home/srie/Documents/nix-Rice && nix flake update && sudo nixos-rebuild switch --flake .#nixos-workstation";
+      "...." = "cd ../../..";
+      "nixos-rebuild" =
+        "sudo nixos-rebuild switch --flake /home/srie/Documents/nix-Rice#nixos-workstation";
+      "nixos-update" =
+        "cd /home/srie/Documents/nix-Rice && nix flake update && sudo nixos-rebuild switch --flake .#nixos-workstation";
     };
   };
 }

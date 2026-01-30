@@ -1,4 +1,9 @@
-{ config, pkgs, pkgs-unstable, ... }:
+{
+  config,
+  pkgs,
+  pkgs-unstable,
+  ...
+}:
 
 {
   environment.systemPackages = with pkgs; [
@@ -9,7 +14,7 @@
 
     # Development
     claude-code
-    nixfmt-rfc-style  # Nix formatter
+    nixfmt-rfc-style # Nix formatter
     # VS Code managed by Home Manager for better desktop integration
     # Git managed by Home Manager for better config management
 
@@ -32,7 +37,7 @@
 
     # File manager
     nautilus
-    sushi  # File previewer for Nautilus
+    sushi # File previewer for Nautilus
 
     # System utilities
     pavucontrol
@@ -89,4 +94,5 @@
   # Fish shell as default - keep system-wide to set default shell
   # Actual Fish configuration managed by Home Manager
   programs.fish.enable = true;
+  programs.bash.enable = true;
 }

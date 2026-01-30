@@ -125,6 +125,9 @@
   # OpenVPN
   services.openvpn.servers = { };
 
+  # For bash compatibility in some scripts
+  services.envfs.enable = true;
+
   # System version
   system.stateVersion = "25.11";
 }
