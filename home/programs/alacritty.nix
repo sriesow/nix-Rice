@@ -30,7 +30,7 @@
           family = "JetBrainsMono Nerd Font";
           style = "Italic";
         };
-        size = 11.0;
+        size = 14.0;
 
         # Disable built-in box drawing to use font glyphs
         builtin_box_drawing = false;

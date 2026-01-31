@@ -140,9 +140,9 @@ binds {
     Mod+B { spawn "firefox"; }
     Mod+Q { close-window; }
 
-    // Screenshots with grim and slurp
-    Print { spawn "grim" "-g" "$(slurp)" "screenshot-$(date +%Y%m%d-%H%M%S).png"; }
-    Mod+Print { spawn "grim" "screenshot-$(date +%Y%m%d-%H%M%S).png"; }
+    // Screenshots with grim and slurp (use shell so $() works)
+    Mod+P { spawn "sh" "-c" "grim -g \"$(slurp)\" - | tee \"$HOME/Pictures/Screenshots/screenshot-$(date +%Y%m%d-%H%M%S).png\" | wl-copy --type image/png"; }
+    Mod+Ctrl+P { spawn "sh" "-c" "grim - | wl-copy --type image/png"; }
 
     // Window focus
     Mod+H { focus-column-left; }
