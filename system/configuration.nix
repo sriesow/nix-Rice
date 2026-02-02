@@ -116,7 +116,9 @@
     extraPortals = with pkgs; [
       xdg-desktop-portal-gtk
       xdg-desktop-portal-gnome
+      xdg-desktop-portal-wlr
     ];
+    wlr.enable = true;
   };
 
   # Passwordless sudo

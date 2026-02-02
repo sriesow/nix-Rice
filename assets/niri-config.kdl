@@ -31,7 +31,7 @@ layout {
         proportion 0.66667
     }
 
-    default-column-width { proportion 0.7; }
+    default-column-width { proportion 0.8; }
 
     focus-ring {
         width 3
@@ -64,11 +64,13 @@ window-rule {
     match app-id="Alacritty"
     draw-border-with-background false
     opacity 0.8
+    open-maximized true
 }
 
 window-rule {
-    match app-id="Code"
+    match app-id="code"
     opacity 0.95
+    open-maximized true
 }
 
 window-rule {

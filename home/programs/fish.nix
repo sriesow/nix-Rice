@@ -81,6 +81,12 @@
         home-manager generations
       end
 
+      function activate_venv --on-variable PWD
+        if test -f .venv/bin/activate.fish
+          source .venv/bin/activate.fish
+        end
+      end
+
       # Custom aliases
       alias g='git'
       alias vim='vim'

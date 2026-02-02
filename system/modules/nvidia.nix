@@ -58,9 +58,9 @@
     # Remove this line if cursors work fine
     WLR_NO_HARDWARE_CURSORS = "1";
 
-    # CUDA environment variables
-    CUDA_PATH = "${pkgs.cudaPackages.cudatoolkit}";
-    CUDA_HOME = "${pkgs.cudaPackages.cudatoolkit}";
+    # CUDA environment variables (uncomment if you need CUDA)
+    # CUDA_PATH = "${pkgs.cudaPackages.cudatoolkit}";
+    # CUDA_HOME = "${pkgs.cudaPackages.cudatoolkit}";
   };
 
   # Kernel modules and boot options
@@ -88,12 +88,12 @@
   # Additional packages for NVIDIA and CUDA
   environment.systemPackages = with pkgs; [
     nvtopPackages.nvidia # GPU monitoring tool
-    cudaPackages.cudatoolkit # CUDA toolkit
-    cudaPackages.cudnn # CUDA Deep Neural Network library
     libva-utils # VA-API utilities for video acceleration
     vdpauinfo # VDPAU utilities for video acceleration
 
     # Development tools (optional, uncomment if needed)
+    # cudaPackages.cudatoolkit        # CUDA toolkit
+    # cudaPackages.cudnn              # CUDA Deep Neural Network library
     # cudaPackages.cuda_nsight        # NVIDIA Nsight Systems
     # cudaPackages.cuda_nvprof        # NVIDIA Visual Profiler
     # cudaPackages.cuda_samples       # CUDA samples
