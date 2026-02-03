@@ -1,0 +1,18 @@
+{
+  "window.titleBarStyle": "custom",
+  "window.menuBarVisibility": "toggle",
+  "editor.fontFamily": "'JetBrainsMono Nerd Font', 'monospace'",
+  "editor.fontSize": 16,
+  "editor.minimap.enabled": true,
+  "workbench.startupEditor": "none",
+  "telemetry.telemetryLevel": "off",
+
+  "python.languageServer": "Pylance",
+  "python.analysis.typeCheckingMode": "basic",
+
+  "files.autoSave": "afterDelay",
+  "editor.formatOnSave": true,
+  "editor.tabSize": 2,
+  "claudeCode.preferredLocation": "panel",
+  "claudeCode.selectedModel": "opus",
+}

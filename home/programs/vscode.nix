@@ -1,50 +1,40 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
+let
+  # Get the absolute path to settings.json in the nix-Rice repo
+  settingsPath = "${config.home.homeDirectory}/Documents/nix-Rice/assets/vscode/settings.json";
+in
 {
-  programs.vscode = {
-    enable = true;
-    package = pkgs.vscode;
+  # Install VS Code as a package only
+  home.packages = [ pkgs.vscode ];
 
-    # VS Code settings with profiles support
-    profiles.default = {
-      enableUpdateCheck = false;
-      enableExtensionUpdateCheck = false;
+  # Create VS Code User directory and symlink settings from assets
+  # This activation script runs after home-manager creates its symlinks
+  home.activation.vscodeSettings = lib.hm.dag.entryAfter [ "writeBoundary" ] ''
+    # Ensure VS Code User directory exists
+    mkdir -p ${config.home.homeDirectory}/.config/Code/User
 
-      # Essential extensions
-      extensions = with pkgs.vscode-extensions; [
-        # Python development
-        ms-python.python
-        ms-python.vscode-pylance
+    # Remove any existing settings.json (could be a symlink to Nix store)
+    rm -f ${config.home.homeDirectory}/.config/Code/User/settings.json
 
-        # General development
-        eamodio.gitlens
+    # Create direct symlink to assets file (writable location)
+    ln -sf ${settingsPath} ${config.home.homeDirectory}/.config/Code/User/settings.json
 
-        # Nix support
-        jnoortheen.nix-ide
+    echo "VS Code settings.json symlinked to assets directory"
+  '';
 
-        # Additional useful extensions
-        esbenp.prettier-vscode
-        dbaeumer.vscode-eslint
-      ];
-
-      userSettings = {
-        "window.titleBarStyle" = "custom";
-        "window.menuBarVisibility" = "toggle";
-        "editor.fontFamily" = "'JetBrainsMono Nerd Font', 'monospace'";
-        "editor.fontSize" = 16;
-        "editor.minimap.enabled" = true;
-        "workbench.startupEditor" = "none";
-        "telemetry.telemetryLevel" = "off";
-
-        # Python settings
-        "python.languageServer" = "Pylance";
-        "python.analysis.typeCheckingMode" = "basic";
-
-        # Editor settings
-        "files.autoSave" = "afterDelay";
-        "editor.formatOnSave" = true;
-        "editor.tabSize" = 2;
-      };
-    };
-  };
+  # Optional: Install extensions via Nix (uncomment if desired)
+  # Alternatively, let VS Code manage extensions directly for flexibility
+  # programs.vscode = {
+  #   enable = true;
+  #   extensions = with pkgs.vscode-extensions; [
+  #     ms-python.python
+  #     ms-python.vscode-pylance
+  #     eamodio.gitlens
+  #     jnoortheen.nix-ide
+  #     esbenp.prettier-vscode
+  #     dbaeumer.vscode-eslint
+  #   ];
+  #   mutableExtensionsDir = true;
+  # };
 }

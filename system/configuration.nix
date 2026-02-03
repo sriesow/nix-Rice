@@ -24,7 +24,7 @@
       enable = true;
       device = "nodev";
       efiSupport = true;
-      useOSProber = true;
+      useOSProber = false;  # Windows on separate disk - boot via BIOS menu
       configurationLimit = 10;
     };
   };

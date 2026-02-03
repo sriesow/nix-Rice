@@ -5,6 +5,14 @@
   ...
 }:
 
+let
+  # Custom Google Cloud SDK with GKE auth plugin
+  gcloud-with-gke-auth = pkgs.google-cloud-sdk.withExtraComponents (
+    with pkgs.google-cloud-sdk.components; [
+      gke-gcloud-auth-plugin
+    ]
+  );
+in
 {
   environment.systemPackages = with pkgs; [
     # Essential tools
@@ -15,6 +23,7 @@
     # Development
     claude-code
     nixfmt-rfc-style # Nix formatter
+    nodejs_22 # Node.js LTS with npm and npx (required for Claude Code VSCode extension)
     # VS Code managed by Home Manager for better desktop integration
     # Git managed by Home Manager for better config management
 
@@ -78,9 +87,10 @@
     docker-compose
 
     # Cloud CLIs
-    google-cloud-sdk
+    gcloud-with-gke-auth # Google Cloud SDK with GKE auth plugin
     azure-cli
     awscli2
+    kubectl # Kubernetes command-line tool
 
     # Terminal enhancements managed by Home Manager:
     # - starship (prompt)
