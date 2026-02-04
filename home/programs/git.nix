@@ -5,8 +5,8 @@
     enable = true;
     settings = {
       user = {
-        name = "srie";
-        email = "sriesow@gmail.com";
+        name = "sriesow";
+        email = "srieraammohan@gmail.com";
       };
       init.defaultBranch = "main";
       pull.rebase = false;
