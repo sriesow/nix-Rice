@@ -7,6 +7,7 @@
 
   imports = [
     ./programs/alacritty.nix
+    ./programs/brave.nix
     ./programs/niri.nix
     ./programs/noctalia.nix
     ./programs/vscode.nix
