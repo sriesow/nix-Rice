@@ -1,5 +1,4 @@
-// Niri configuration with Catppuccin Mocha theme
-// Documentation: https://github.com/YaLTeR/niri/wiki/Configuration:-Overview
+// Niri configuration - Catppuccin Mocha theme
 
 input {
     keyboard {
@@ -7,22 +6,22 @@ input {
             layout "us"
         }
     }
-
     touchpad {
         tap
         natural-scroll
         accel-speed 0.3
     }
-
     mouse {
         accel-speed 0.3
     }
 }
 
-// Catppuccin Mocha color scheme
+hotkey-overlay {
+    skip-at-startup
+}
+
 layout {
     gaps 12
-
     center-focused-column "always"
 
     preset-column-widths {
@@ -31,35 +30,28 @@ layout {
         proportion 0.66667
     }
 
-    default-column-width { proportion 0.8; }
+    default-column-width {
+        proportion 0.8
+    }
 
     focus-ring {
         width 3
-        active-color "#CBA6F7"   // Catppuccin Mauve
-        inactive-color "#45475A" // Catppuccin Surface1
+        active-color "#CBA6F7"
+        inactive-color "#45475A"
     }
 
     border {
         width 2
-        active-color "#CBA6F7"   // Catppuccin Mauve
-        inactive-color "#313244" // Catppuccin Surface0
-    }
-
-    struts {
-        left 0
-        right 0
-        top 0
-        bottom 0
+        active-color "#CBA6F7"
+        inactive-color "#313244"
     }
 }
 
-// Catppuccin themed window rules with opacity for aesthetic
 window-rule {
     geometry-corner-radius 12
     clip-to-geometry true
 }
 
-// Opacity rules for a nice aesthetic look
 window-rule {
     match app-id="Alacritty"
     draw-border-with-background false
@@ -69,72 +61,46 @@ window-rule {
 
 window-rule {
     match app-id="code"
-    opacity 0.95
+    opacity 0.9
     open-maximized true
 }
 
 window-rule {
-    match app-id="org.gnome.Nautilus"
+    match app-id=r#"firefox|brave-browser|google-chrome|org\.gnome\.Nautilus"#
     opacity 0.95
 }
 
-window-rule {
-    match app-id="firefox"
-    opacity 0.95
-}
-
-window-rule {
-    match app-id="brave-browser"
-    opacity 0.95
-}
-
-window-rule {
-    match app-id="google-chrome"
-    opacity 0.95
-}
-
-// Animations - smooth and material
 animations {
-    slowdown 1.0
-
     window-open {
         duration-ms 200
         curve "ease-out-cubic"
     }
-
     window-close {
         duration-ms 150
         curve "ease-out-cubic"
     }
-
     window-movement {
         duration-ms 200
         curve "ease-out-cubic"
     }
-
-    workspace-switch {
-        duration-ms 250
-        curve "ease-out-cubic"
-    }
-
-    horizontal-view-movement {
-        duration-ms 250
-        curve "ease-out-cubic"
-    }
-
     window-resize {
         duration-ms 200
         curve "ease-out-cubic"
     }
-
+    workspace-switch {
+        duration-ms 250
+        curve "ease-out-cubic"
+    }
+    horizontal-view-movement {
+        duration-ms 250
+        curve "ease-out-cubic"
+    }
     config-notification-open-close {
         duration-ms 200
     }
 }
 
-// Keybindings
 binds {
-    // Mod key (Super/Windows key)
     Mod+Return { spawn "alacritty"; }
     Mod+Space { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
     Mod+V { spawn "noctalia-shell" "ipc" "call" "launcher" "clipboard"; }
@@ -142,11 +108,9 @@ binds {
     Mod+B { spawn "firefox"; }
     Mod+Q { close-window; }
 
-    // Screenshots with grim and slurp (use shell so $() works)
     Mod+P { spawn "sh" "-c" "grim -g \"$(slurp)\" - | tee \"$HOME/Pictures/Screenshots/screenshot-$(date +%Y%m%d-%H%M%S).png\" | wl-copy --type image/png"; }
     Mod+Ctrl+P { spawn "sh" "-c" "grim - | wl-copy --type image/png"; }
 
-    // Window focus
     Mod+H { focus-column-left; }
     Mod+L { focus-column-right; }
     Mod+J { focus-window-down; }
@@ -156,7 +120,6 @@ binds {
     Mod+Down { focus-window-down; }
     Mod+Up { focus-window-up; }
 
-    // Window movement
     Mod+Shift+H { move-column-left; }
     Mod+Shift+L { move-column-right; }
     Mod+Shift+J { move-window-down; }
@@ -166,13 +129,11 @@ binds {
     Mod+Shift+Down { move-window-down; }
     Mod+Shift+Up { move-window-up; }
 
-    // Column width
     Mod+Minus { set-column-width "-10%"; }
     Mod+Equal { set-column-width "+10%"; }
     Mod+Shift+Minus { set-window-height "-10%"; }
     Mod+Shift+Equal { set-window-height "+10%"; }
 
-    // Workspaces
     Mod+1 { focus-workspace 1; }
     Mod+2 { focus-workspace 2; }
     Mod+3 { focus-workspace 3; }
@@ -182,12 +143,9 @@ binds {
     Mod+7 { focus-workspace 7; }
     Mod+8 { focus-workspace 8; }
     Mod+9 { focus-workspace 9; }
-
-    // Cycle through workspaces
     Mod+Tab { focus-workspace-down; }
     Mod+Shift+Tab { focus-workspace-up; }
 
-    // Move window to workspace
     Mod+Shift+1 { move-window-to-workspace 1; }
     Mod+Shift+2 { move-window-to-workspace 2; }
     Mod+Shift+3 { move-window-to-workspace 3; }
@@ -198,21 +156,14 @@ binds {
     Mod+Shift+8 { move-window-to-workspace 8; }
     Mod+Shift+9 { move-window-to-workspace 9; }
 
-    // Fullscreen
     Mod+F { fullscreen-window; }
-
-    // Maximize
     Mod+M { maximize-column; }
-
-    // Consume/expel window from column
     Mod+Comma { consume-window-into-column; }
     Mod+Period { expel-window-from-column; }
 
-    // Session controls
     Mod+Shift+E { quit; }
     Mod+Shift+P { power-off-monitors; }
 
-    // Volume and brightness
     XF86AudioRaiseVolume { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%+"; }
     XF86AudioLowerVolume { spawn "wpctl" "set-volume" "@DEFAULT_AUDIO_SINK@" "5%-"; }
     XF86AudioMute { spawn "wpctl" "set-mute" "@DEFAULT_AUDIO_SINK@" "toggle"; }
@@ -220,19 +171,17 @@ binds {
     XF86MonBrightnessDown { spawn "brightnessctl" "set" "5%-"; }
 }
 
-// Environment variables
 environment {
     QT_QPA_PLATFORM "wayland"
     QT_WAYLAND_DISABLE_WINDOWDECORATION "1"
     MOZ_ENABLE_WAYLAND "1"
+    GDK_BACKEND "wayland"
     NIXOS_OZONE_WL "1"
 }
 
-// Cursor theme
 cursor {
     xcursor-theme "catppuccin-mocha-dark-cursors"
     xcursor-size 24
 }
 
-// Prefer dark mode for applications
 prefer-no-csd

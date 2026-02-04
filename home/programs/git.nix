@@ -3,24 +3,16 @@
 {
   programs.git = {
     enable = true;
-
     settings = {
       user = {
         name = "srie";
-        email = "srie@example.com"; # Update with your actual email
+        email = "sriesow@gmail.com";
       };
-
       init.defaultBranch = "main";
       pull.rebase = false;
       core.editor = "vim";
-
-      # Better diff output
       diff.algorithm = "histogram";
-
-      # Credential helper
       credential.helper = "store";
-
-      # Aliases
       alias = {
         st = "status";
         co = "checkout";

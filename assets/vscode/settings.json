@@ -1,5 +1,5 @@
 {
-  "window.titleBarStyle": "custom",
+  "window.titleBarStyle": "native",
   "window.menuBarVisibility": "toggle",
   "editor.fontFamily": "'JetBrainsMono Nerd Font', 'monospace'",
   "editor.fontSize": 16,

@@ -1,52 +1,43 @@
-{
-  config,
-  pkgs,
-  pkgs-unstable,
-  ...
-}:
+{ config, pkgs, pkgs-unstable, ... }:
 
 let
-  # Custom Google Cloud SDK with GKE auth plugin
   gcloud-with-gke-auth = pkgs.google-cloud-sdk.withExtraComponents (
-    with pkgs.google-cloud-sdk.components; [
-      gke-gcloud-auth-plugin
-    ]
+    with pkgs.google-cloud-sdk.components; [ gke-gcloud-auth-plugin ]
   );
 in
 {
   environment.systemPackages = with pkgs; [
-    # Essential tools
+    # Essential
     wget
     vim
     uv
 
     # Development
     claude-code
-    nixfmt-rfc-style # Nix formatter
-    nodejs_22 # Node.js LTS with npm and npx (required for Claude Code VSCode extension)
-    # VS Code managed by Home Manager for better desktop integration
-    # Git managed by Home Manager for better config management
+    nixfmt-rfc-style
+    nodejs_22
 
-    # Niri and Wayland essentials
+    # Wayland/Niri
     niri
     xwayland
     mesa
     libGL
     libGLU
-
-    # Terminal (Alacritty managed by Home Manager)
-    # Fish shell managed by Home Manager
-
-    # Noctalia has built-in app launcher (no rofi needed)
-
-    # Screenshots and screen recording
     grim
     slurp
     wl-clipboard
+    wlr-randr
+    swaybg
 
-    # File manager
+    # Desktop apps
     nautilus
-    sushi # File previewer for Nautilus
+    sushi
+    brave
+    google-chrome
+    vlc
+    slack
+    postman
+    solaar
 
     # System utilities
     pavucontrol
@@ -55,54 +46,28 @@ in
     wireplumber
     lm_sensors
 
-    # Noctalia Shell will be configured via Home Manager with flake input
-
-    # Wayland utilities
-    wlr-randr
-    swaybg
-
-    # Image format support
+    # Image libraries
     libpng
     libjpeg
     libwebp
 
-    # Browsers (kept system-wide for multi-user access)
-    brave
-    # Firefox managed by Home Manager for better profile management
-    google-chrome
-
-    # Applications
-    vlc
-    slack
-    postman
-    # Logseq and Sublime4 managed by Home Manager
-    solaar
-    # Noctalia has built-in keep awake feature (removed caffeine-ng)
-
-    # Network & VPN
+    # Network/VPN
     openvpn
     networkmanager-openvpn
 
-    # Docker tools
+    # Containers
     docker-compose
 
     # Cloud CLIs
-    gcloud-with-gke-auth # Google Cloud SDK with GKE auth plugin
+    gcloud-with-gke-auth
     azure-cli
     awscli2
-    kubectl # Kubernetes command-line tool
+    kubectl
 
-    # Terminal enhancements managed by Home Manager:
-    # - starship (prompt)
-    # - zoxide (directory jumper)
-    # - eza (ls replacement)
-
-    # Cursor theme
+    # Theme
     catppuccin-cursors
   ];
 
-  # Fish shell as default - keep system-wide to set default shell
-  # Actual Fish configuration managed by Home Manager
   programs.fish.enable = true;
   programs.bash.enable = true;
 }

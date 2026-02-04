@@ -1,9 +1,4 @@
-{
-  config,
-  pkgs,
-  pkgs-unstable,
-  ...
-}:
+{ config, pkgs, pkgs-unstable, ... }:
 
 {
   imports = [
@@ -14,7 +9,6 @@
     ./modules/packages.nix
   ];
 
-  # Bootloader
   boot.loader = {
     efi = {
       canTouchEfiVariables = true;
@@ -24,23 +18,19 @@
       enable = true;
       device = "nodev";
       efiSupport = true;
-      useOSProber = false;  # Windows on separate disk - boot via BIOS menu
+      useOSProber = false;
       configurationLimit = 10;
     };
   };
 
-  # Networking
   networking.hostName = "nixos";
   networking.networkmanager.enable = true;
-  networking.networkmanager.plugins = with pkgs; [
-    networkmanager-openvpn
-  ];
-  # Hardware support for Noctalia
+  networking.networkmanager.plugins = with pkgs; [ networkmanager-openvpn ];
+
   hardware.bluetooth.enable = true;
   services.upower.enable = true;
   services.power-profiles-daemon.enable = true;
 
-  # Localization
   time.timeZone = "Asia/Kolkata";
   i18n.defaultLocale = "en_IN";
   i18n.extraLocaleSettings = {
@@ -55,22 +45,14 @@
     LC_TIME = "en_IN";
   };
 
-  # X11 and Display Manager
   services.xserver.enable = true;
   services.displayManager.gdm.enable = true;
   services.displayManager.gdm.wayland = true;
   services.desktopManager.gnome.enable = true;
-
-  # Keymap
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
-
-  # Printing
+  services.xserver.xkb = { layout = "us"; variant = ""; };
   services.printing.enable = true;
 
-  # Sound with PipeWire
+  # PipeWire audio
   services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
@@ -80,37 +62,21 @@
     pulse.enable = true;
   };
 
-  # User account
   users.users.srie = {
     isNormalUser = true;
     description = "srie";
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-      "video"
-      "docker"
-      "vboxsf"
-    ];
+    extraGroups = [ "networkmanager" "wheel" "video" "docker" "vboxsf" ];
     shell = pkgs.fish;
   };
 
-  # Firefox
   programs.firefox.enable = true;
   programs.nix-ld.enable = true;
 
-  # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.permittedInsecurePackages = [
-    "openssl-1.1.1w"
-  ];
+  nixpkgs.config.permittedInsecurePackages = [ "openssl-1.1.1w" ];
 
-  # Enable flakes
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
-  # XDG portal
   xdg.portal = {
     enable = true;
     extraPortals = with pkgs; [
@@ -121,15 +87,9 @@
     wlr.enable = true;
   };
 
-  # Passwordless sudo
   security.sudo.wheelNeedsPassword = false;
-
-  # OpenVPN
   services.openvpn.servers = { };
-
-  # For bash compatibility in some scripts
   services.envfs.enable = true;
 
-  # System version
   system.stateVersion = "25.11";
 }

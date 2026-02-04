@@ -24,6 +24,14 @@
         # Performance
         "browser.sessionstore.interval" = 15000000;
 
+        # Hardware video acceleration (VA-API)
+        "media.ffmpeg.vaapi.enabled" = true;
+        "media.hardware-video-decoding.enabled" = true;
+        "gfx.webrender.all" = true;
+
+        # WebRTC improvements for video calls
+        "media.navigator.mediadatadecoder_vpx_enabled" = true;
+
         # UI preferences
         "browser.startup.page" = 3; # Resume previous session
         "browser.tabs.loadInBackground" = true;
