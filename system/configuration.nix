@@ -28,6 +28,9 @@
   networking.networkmanager.plugins = with pkgs; [ networkmanager-openvpn ];
 
   hardware.bluetooth.enable = true;
+  hardware.logitech.wireless.enable = true;
+  hardware.logitech.wireless.enableGraphical = true;
+  hardware.uinput.enable = true;
   services.upower.enable = true;
   services.power-profiles-daemon.enable = true;
 
@@ -65,7 +68,7 @@
   users.users.srie = {
     isNormalUser = true;
     description = "srie";
-    extraGroups = [ "networkmanager" "wheel" "video" "docker" "vboxsf" ];
+    extraGroups = [ "networkmanager" "wheel" "video" "docker" "vboxsf" "input" ];
     shell = pkgs.fish;
   };
 
