@@ -38,6 +38,7 @@ in
     slack
     postman
     solaar
+    remmina
 
     # System utilities
     pavucontrol

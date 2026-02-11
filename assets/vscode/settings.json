@@ -6,6 +6,8 @@
   "editor.minimap.enabled": true,
   "workbench.startupEditor": "none",
   "telemetry.telemetryLevel": "off",
+  "update.mode": "none",
+  "extensions.autoCheckUpdates": false,
 
   "python.languageServer": "Pylance",
   "python.analysis.typeCheckingMode": "basic",
@@ -14,5 +16,5 @@
   "editor.formatOnSave": true,
   "editor.tabSize": 2,
   "claudeCode.preferredLocation": "panel",
-  "claudeCode.selectedModel": "opus",
+  "claudeCode.selectedModel": "opus[1m]",
 }
