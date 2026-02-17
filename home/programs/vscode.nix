@@ -9,7 +9,7 @@ in
   programs.vscode = {
     enable = true;
     mutableExtensionsDir = false;
-    extensions = with pkgs.vscode-extensions; [
+    profiles.default.extensions = with pkgs.vscode-extensions; [
       # Theme
       catppuccin.catppuccin-vsc
       catppuccin.catppuccin-vsc-icons
@@ -43,6 +43,14 @@ in
         publisher = "ckolkman";
         version = "1.4.3";
         sha256 = "054a34icj8xig47w6k3j42i99b6srf254s5cl2knrgprrlsvcb1q";
+      })
+
+      # Web
+      (marketplace {
+        name = "LiveServer";
+        publisher = "ritwickdey";
+        version = "5.7.9";
+        sha256 = "0dycc18i1zn20zgh5ymqbi1nmg2an49ndf9r2w6dr5lx8d49hh63";
       })
 
       # Nix

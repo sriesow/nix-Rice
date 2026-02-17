@@ -56,6 +56,9 @@ in
     openvpn
     networkmanager-openvpn
 
+    # Torrents
+    qbittorrent
+
     # Containers
     docker-compose
 
