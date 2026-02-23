@@ -18,7 +18,7 @@
     # mpv config for stable NVIDIA Wayland playback
     ".config/celluloid/mpv.conf".text = ''
       vo=gpu-next
-      hwdec=nvdec-copy
+      hwdec=nvdec
       gpu-api=vulkan
     '';
   };
