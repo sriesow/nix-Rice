@@ -26,6 +26,19 @@
         sudo nix-collect-garbage --delete-old
         nix-store --gc
         nix-store --optimize
+        echo "Cleaning stale boot files..."
+        set -l current_kernels (readlink -f /nix/var/nix/profiles/system/kernel /nix/var/nix/profiles/system-*-link/kernel 2>/dev/null | xargs -I{} basename {})
+        set -l current_initrds (readlink -f /nix/var/nix/profiles/system/initrd /nix/var/nix/profiles/system-*-link/initrd 2>/dev/null | xargs -I{} basename {})
+        for f in /boot/kernels/*
+          set -l fname (basename $f)
+          if string match -q "*.tmp" -- $fname
+            echo "Removing incomplete: $fname"
+            sudo rm -f $f
+          else if not contains -- $fname $current_kernels $current_initrds
+            echo "Removing stale: $fname"
+            sudo rm -f $f
+          end
+        end
         set -l after (du -sh /nix/store 2>/dev/null | awk '{print $1}')
         echo "Store size after: $after"
       end

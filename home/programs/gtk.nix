@@ -40,7 +40,7 @@
       gtk-decoration-layout = "menu:close";
       gtk-enable-animations = true;
       gtk-menu-images = true;
-      gtk-primary-button-warps-slider = false;
+      gtk-primary-button-warps-slider = true;
       gtk-toolbar-style = "GTK_TOOLBAR_BOTH_HORIZ";
       gtk-xft-antialias = 1;
       gtk-xft-hinting = 1;
@@ -52,7 +52,7 @@
       gtk-application-prefer-dark-theme = true;
       gtk-decoration-layout = "menu:close";
       gtk-enable-animations = true;
-      gtk-primary-button-warps-slider = false;
+      gtk-primary-button-warps-slider = true;
       gtk-xft-antialias = 1;
       gtk-xft-hinting = 1;
       gtk-xft-hintstyle = "hintslight";
@@ -68,6 +68,7 @@
       cursor-theme = "catppuccin-mocha-dark-cursors";
       cursor-size = 24;
       font-name = "Inter 11";
+      gtk-primary-button-warps-slider = true;
     };
 
     "org/gnome/desktop/wm/preferences" = {
