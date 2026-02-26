@@ -15,10 +15,10 @@
     # Key remappings
     ".config/celluloid/input.conf".source = ../../assets/celluloid/input.conf;
 
-    # mpv config for stable NVIDIA Wayland playback
+    # mpv config - use Vulkan + vaapi to avoid NVDEC GPU memory leak
     ".config/celluloid/mpv.conf".text = ''
       vo=gpu-next
-      hwdec=nvdec
+      hwdec=vaapi
       gpu-api=vulkan
     '';
   };
