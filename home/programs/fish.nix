@@ -27,43 +27,21 @@
         nix-store --gc
         nix-store --optimize
         echo "Cleaning stale boot files..."
-        # Collect nix store dir names (e.g. "abc123-linux-6.12.74") for remaining profiles
-        set -l keep_patterns
-        for profile in /nix/var/nix/profiles/system /nix/var/nix/profiles/system-*-link
-          for target in kernel initrd
-            if test -L "$profile/$target"
-              set -l store_path (readlink -f "$profile/$target" 2>/dev/null)
-              if test -n "$store_path"
-                set -l store_dir (string replace -r '^/nix/store/([^/]+)/.*' '$1' -- "$store_path")
-                if test -n "$store_dir"
-                  set -a keep_patterns "$store_dir"
-                end
-              end
-            end
-          end
-        end
-        if test (count $keep_patterns) -eq 0
-          echo "Warning: Could not determine current kernel store paths. Skipping boot cleanup."
+        # Use grub.cfg as source of truth for which boot files are needed
+        set -l referenced (string match -r '/kernels/\S+' < /boot/grub/grub.cfg 2>/dev/null | string replace '/kernels/' "" | sort -u)
+        if test (count $referenced) -eq 0
+          echo "Warning: Could not parse grub.cfg for boot files. Skipping boot cleanup."
           set -l after (du -sh /nix/store 2>/dev/null | awk '{print $1}')
           echo "Store size after: $after"
           return
         end
-        echo "Keeping boot files matching: $keep_patterns"
+        echo "Files referenced in grub.cfg: $referenced"
         for f in /boot/kernels/*
           set -l fname (basename "$f")
           if string match -q "*.tmp" -- "$fname"
             echo "Removing incomplete: $fname"
             sudo rm -f "$f"
-            continue
-          end
-          set -l keep false
-          for pattern in $keep_patterns
-            if string match -q "*$pattern*" -- "$fname"
-              set keep true
-              break
-            end
-          end
-          if test "$keep" = false
+          else if not contains -- "$fname" $referenced
             echo "Removing stale: $fname"
             sudo rm -f "$f"
           end
