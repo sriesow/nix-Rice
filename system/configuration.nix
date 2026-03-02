@@ -20,6 +20,7 @@
       efiSupport = true;
       useOSProber = false;
       configurationLimit = 10;
+      theme = pkgs.catppuccin-grub;
     };
   };
 
