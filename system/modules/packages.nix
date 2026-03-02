@@ -39,6 +39,8 @@ in
     postman
     solaar
     remmina
+    loupe
+    papers
 
     # System utilities
     pavucontrol
@@ -46,6 +48,8 @@ in
     brightnessctl
     wireplumber
     lm_sensors
+    exfatprogs
+    ntfs3g
 
     # Image libraries
     libpng

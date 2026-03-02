@@ -21,6 +21,12 @@
       useOSProber = false;
       configurationLimit = 10;
       theme = pkgs.catppuccin-grub;
+      extraEntries = ''
+        menuentry "Windows" --class windows {
+          search --set=root --fs-uuid 6E3F-8CCA
+          chainloader /EFI/Microsoft/Boot/bootmgfw.efi
+        }
+      '';
     };
   };
 
