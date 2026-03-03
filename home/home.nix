@@ -16,7 +16,7 @@
     ./programs/starship.nix
     ./programs/fish.nix
     ./programs/gtk.nix
-    ./programs/celluloid.nix
+    ./programs/mpv.nix
   ];
 
   programs.home-manager.enable = true;

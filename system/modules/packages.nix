@@ -34,7 +34,7 @@ in
     sushi
     brave
     google-chrome
-    celluloid
+    mpv
     slack
     postman
     solaar
