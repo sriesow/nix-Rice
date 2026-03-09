@@ -73,6 +73,28 @@
         end
       end
 
+      function cpsync
+        if test (count $argv) -lt 2
+          echo (set_color red)"Usage: cpsync <source> <destination>"(set_color normal)
+          return 1
+        end
+        set -l src $argv[1..-2]
+        set -l dst $argv[-1]
+        echo (set_color cyan)"━━━ Syncing ━━━"(set_color normal)
+        echo (set_color yellow)"  Source: "(set_color green)"$src"(set_color normal)
+        echo (set_color yellow)"  Dest:   "(set_color green)"$dst"(set_color normal)
+        echo (set_color cyan)"━━━━━━━━━━━━━━━"(set_color normal)
+        echo
+        rsync -avh --info=progress2 --stats --human-readable $argv
+        if test $status -eq 0
+          echo
+          echo (set_color green)"✓ Sync completed successfully!"(set_color normal)
+        else
+          echo
+          echo (set_color red)"✗ Sync failed!"(set_color normal)
+        end
+      end
+
       alias g='git'
     '';
 
