@@ -13,9 +13,6 @@
   programs.noctalia-shell = {
     enable = true;
 
-    # Enable systemd service for automatic startup
-    systemd.enable = true;
-
     # Custom settings
     settings = {
       settingsVersion = 43;

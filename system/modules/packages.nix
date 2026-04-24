@@ -11,11 +11,15 @@ in
     wget
     vim
     uv
+    unzip
 
     # Development
     claude-code
     nixfmt-rfc-style
     nodejs_22
+    jdk25
+    gradle
+    gh
 
     # Wayland/Niri
     niri
@@ -68,9 +72,11 @@ in
 
     # Cloud CLIs
     gcloud-with-gke-auth
+    google-cloud-sql-proxy
     azure-cli
     awscli2
     kubectl
+    terraform
 
     # Theme
     catppuccin-cursors

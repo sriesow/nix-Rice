@@ -29,6 +29,12 @@ in
         version = "0.4.71";
         sha256 = "1ag1iy8cb7wy9vq9bs22xkpzzsr4ycb9dj3q871h8ijmp3k5wja3";
       })
+      (marketplace {
+        name = "claude-sessions";
+        publisher = "es6kr";
+        version = "0.4.7";
+        sha256 = "189gbpqs105zz0i6pzm74jqhn3xzdwiy9cwvqfdzifxz4xpamb8f";
+      })
 
       # Git
       eamodio.gitlens
@@ -51,6 +57,17 @@ in
         publisher = "ritwickdey";
         version = "5.7.9";
         sha256 = "0dycc18i1zn20zgh5ymqbi1nmg2an49ndf9r2w6dr5lx8d49hh63";
+      })
+
+      # Remote
+      ms-vscode-remote.remote-ssh
+
+      # Java
+      (marketplace {
+        name = "vscode-gradle";
+        publisher = "vscjava";
+        version = "3.17.2";
+        sha256 = "1698y7nzdb67sdc9bws6cx1x6wc8vcdiyqpw1bzywcl69c7586x0";
       })
 
       # Nix

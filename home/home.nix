@@ -1,4 +1,9 @@
-{ config, pkgs, pkgs-unstable, ... }:
+{
+  config,
+  pkgs,
+  pkgs-unstable,
+  ...
+}:
 
 {
   home.username = "srie";
@@ -29,7 +34,7 @@
   ];
 
   home.file = {
-    ".face.icon".source = ../assets/avatar.png;
+    ".face".source = ../assets/avatar.png;
     ".config/wallpapers/Clearnight.jpg".source = ../assets/Clearnight.jpg;
     ".config/wallpapers/set-wallpaper.sh" = {
       text = ''
