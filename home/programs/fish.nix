@@ -27,23 +27,94 @@
         nix-store --gc
         nix-store --optimize
         echo "Cleaning stale boot files..."
-        # Use grub.cfg as source of truth for which boot files are needed
-        set -l referenced (string match -r '/kernels/\S+' < /boot/grub/grub.cfg 2>/dev/null | string replace '/kernels/' "" | sort -u)
-        if test (count $referenced) -eq 0
-          echo "Warning: Could not parse grub.cfg for boot files. Skipping boot cleanup."
-          set -l after (du -sh /nix/store 2>/dev/null | awk '{print $1}')
-          echo "Store size after: $after"
-          return
+        # Use active NixOS system profiles to determine which boot files are needed
+        # Boot filenames follow pattern: <store-dir-basename>-<filename>
+        # e.g. /nix/store/abc123-linux-6.12.85/bzImage -> abc123-linux-6.12.85-bzImage
+        set -l referenced
+
+        # Safety: always include currently running system
+        set -l running_kernel (readlink -f /run/current-system/kernel 2>/dev/null)
+        set -l running_initrd (readlink -f /run/current-system/initrd 2>/dev/null)
+        if test -z "$running_kernel" -o -z "$running_initrd"
+          echo "ERROR: Cannot resolve running system kernel/initrd. Aborting boot cleanup for safety."
+          return 1
         end
-        echo "Files referenced in grub.cfg: $referenced"
+
+        for profile in /nix/var/nix/profiles/system-*-link /nix/var/nix/profiles/system /run/current-system
+          if test -e "$profile"
+            set -l kernel_store (readlink -f "$profile"/kernel 2>/dev/null)
+            set -l initrd_store (readlink -f "$profile"/initrd 2>/dev/null)
+            if test -n "$kernel_store"
+              set -l dir_name (basename (dirname "$kernel_store"))
+              set -l file_name (basename "$kernel_store")
+              set -a referenced "$dir_name-$file_name"
+            end
+            if test -n "$initrd_store"
+              set -l dir_name (basename (dirname "$initrd_store"))
+              set -l file_name (basename "$initrd_store")
+              set -a referenced "$dir_name-$file_name"
+            end
+          end
+        end
+        set referenced (printf '%s\n' $referenced | sort -u)
+        if test (count $referenced) -eq 0
+          echo "ERROR: Referenced file list is empty. Aborting boot cleanup for safety."
+          return 1
+        end
+
+        # Safety: verify at least one kernel and one initrd in referenced list
+        set -l has_kernel false
+        set -l has_initrd false
+        for ref in $referenced
+          string match -q "*-bzImage" -- "$ref"; and set has_kernel true
+          string match -q "*-initrd" -- "$ref"; and set has_initrd true
+        end
+        if test "$has_kernel" = false -o "$has_initrd" = false
+          echo "ERROR: Referenced list missing kernel or initrd. Aborting boot cleanup for safety."
+          echo "Referenced: $referenced"
+          return 1
+        end
+
+        echo "Files needed by active profiles:"
+        for ref in $referenced
+          echo "  KEEP: $ref"
+        end
+
+        # Dry-run: collect files to delete
+        set -l to_delete
         for f in /boot/kernels/*
           set -l fname (basename "$f")
           if string match -q "*.tmp" -- "$fname"
-            echo "Removing incomplete: $fname"
-            sudo rm -f "$f"
+            set -a to_delete "$f"
           else if not contains -- "$fname" $referenced
-            echo "Removing stale: $fname"
-            sudo rm -f "$f"
+            set -a to_delete "$f"
+          end
+        end
+
+        if test (count $to_delete) -eq 0
+          echo "No stale boot files found."
+        else
+          # Safety: ensure we are NOT deleting everything
+          set -l total_files (count /boot/kernels/*)
+          if test (count $to_delete) -ge $total_files
+            echo "ERROR: Would delete ALL boot files. Aborting for safety."
+            echo "Files on disk: $total_files, would delete: "(count $to_delete)
+            return 1
+          end
+
+          echo "Files to remove:"
+          for f in $to_delete
+            echo "  DELETE: "(basename "$f")
+          end
+
+          read -P "Proceed with deletion? [y/N] " -l confirm
+          if test "$confirm" = y -o "$confirm" = Y
+            for f in $to_delete
+              sudo rm -f "$f"
+              echo "Removed: "(basename "$f")
+            end
+          else
+            echo "Skipped boot cleanup."
           end
         end
         set -l after (du -sh /nix/store 2>/dev/null | awk '{print $1}')

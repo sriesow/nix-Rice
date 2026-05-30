@@ -15,6 +15,10 @@
   "editor.tabSize": 2,
   "claudeCode.preferredLocation": "panel",
   "claudeCode.selectedModel": "opus[1m]",
+  "claudeCode.claudeProcessWrapper": "/run/current-system/sw/bin/claude",
   "terminal.integrated.enableMultiLinePasteWarning": "never",
-  "liveServer.settings.donotShowInfoMsg": true
+  "liveServer.settings.donotShowInfoMsg": true,
+  "terminal.integrated.env.linux": {
+    "TMPDIR": "/home/srie/.claude/tmp"
+  }
 }

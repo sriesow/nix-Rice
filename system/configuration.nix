@@ -7,6 +7,7 @@
     ./modules/docker.nix
     ./modules/fonts.nix
     ./modules/packages.nix
+    ./modules/remote-access.nix
   ];
 
   boot.loader = {
