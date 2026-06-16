@@ -14,7 +14,7 @@ in
     unzip
 
     # Development
-    claude-code
+    pkgs-unstable.claude-code
     nixfmt-rfc-style
     nodejs_22
     jdk25

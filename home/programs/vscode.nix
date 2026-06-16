@@ -20,8 +20,8 @@ in
       (marketplace {
         name = "claude-code";
         publisher = "anthropic";
-        version = "2.1.131";
-        sha256 = "1y5a2xx7hzxdspbbxqs0khj1q5x9l5mflkd6daxh207ykjgby44m";
+        version = "2.1.160";
+        sha256 = "0cmdl6mwv2llqhmlg84jkkdfvfh5zb7l33pavzbrspqg29m2j30r";
       })
       (marketplace {
         name = "chatgpt";

@@ -1,5 +1,10 @@
 { config, lib, pkgs, ... }:
 
+let
+  # Flip to `true` before travel to enable Tailscale + Sunshine.
+  # Leaves SSH, WoL, and wake-suppression active in either state.
+  enableRemote = false;
+in
 {
   # ====== SSH ======
   services.openssh = {
@@ -15,7 +20,7 @@
 
   # ====== Tailscale ======
   services.tailscale = {
-    enable = true;
+    enable = enableRemote;
     openFirewall = true;
     useRoutingFeatures = "client";
   };
@@ -25,14 +30,14 @@
   # setcap wrapper, so libcuda.so.1 (NVENC) cannot be loaded. niri implements
   # wlr-screencopy, which Sunshine uses as capture path without CAP_SYS_ADMIN.
   services.sunshine = {
-    enable = true;
-    autoStart = true;
+    enable = enableRemote;
+    autoStart = enableRemote;
     capSysAdmin = false;
     openFirewall = true;
   };
 
-  systemd.user.services.sunshine.environment = {
-    LD_LIBRARY_PATH = "/run/opengl-driver/lib";
+  systemd.user.services = lib.mkIf enableRemote {
+    sunshine.environment.LD_LIBRARY_PATH = "/run/opengl-driver/lib";
   };
 
   # ====== Wake-on-LAN ======
@@ -77,16 +82,15 @@
   # ====== Firewall ======
   networking.firewall = {
     enable = true;
-    trustedInterfaces = [ "tailscale0" ];
-    allowedUDPPorts = [ config.services.tailscale.port ];
+    trustedInterfaces = lib.mkIf enableRemote [ "tailscale0" ];
+    allowedUDPPorts = lib.mkIf enableRemote [ config.services.tailscale.port ];
   };
 
   # ====== Tools ======
   environment.systemPackages = with pkgs; [
     ethtool
     wakeonlan
-    tailscale
-  ];
+  ] ++ lib.optional enableRemote tailscale;
 
   # ====== Suspend behavior ======
   # S3 suspend allowed (waker wakes us via WoL). Hibernate disabled.
@@ -94,7 +98,7 @@
   systemd.targets.hybrid-sleep.enable = false;
 
   services.logind.settings.Login = {
-    IdleAction = "suspend";
+    IdleAction = if enableRemote then "suspend" else "ignore";
     IdleActionSec = "30min";
     HandleLidSwitch = "ignore";
     HandleLidSwitchExternalPower = "ignore";
