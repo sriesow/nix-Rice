@@ -35,7 +35,7 @@ input {
     focus-follows-mouse max-scroll-amount="10%"
 }
 
-spawn-at-startup "noctalia-shell"
+spawn-at-startup "noctalia"
 
 hotkey-overlay {
     skip-at-startup
@@ -125,8 +125,8 @@ animations {
 binds {
     // App launchers
     Mod+Return { spawn "alacritty"; }
-    Mod+Space { spawn "noctalia-shell" "ipc" "call" "launcher" "toggle"; }
-    Mod+V { spawn "noctalia-shell" "ipc" "call" "launcher" "clipboard"; }
+    Mod+Space { spawn "noctalia" "msg" "panel-toggle" "launcher"; }
+    Mod+V { spawn "noctalia" "msg" "panel-toggle" "clipboard"; }
     Mod+E { spawn "nautilus"; }
     Mod+B { spawn "firefox"; }
     Mod+Q { close-window; }

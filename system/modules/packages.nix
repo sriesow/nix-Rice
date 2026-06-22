@@ -12,6 +12,7 @@ in
     vim
     uv
     unzip
+    rclone
 
     # Development
     pkgs-unstable.claude-code

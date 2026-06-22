@@ -103,6 +103,10 @@
 
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.permittedInsecurePackages = [ "openssl-1.1.1w" ];
+  # electron_39 is EOL/insecure; override consumers onto the latest safe electron.
+  nixpkgs.overlays = [
+    (final: prev: { electron_39 = prev.electron_40; })
+  ];
 
   nix.settings = {
     experimental-features = [ "nix-command" "flakes" ];
