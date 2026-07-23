@@ -32,14 +32,33 @@
         margin_ends = 8;
         reserve_space = true;
         shadow = true;
-        start = [ "launcher" "group:g1" "workspaces" ];
-        center = [ "clock" "wallpaper" ];
-        end = [ "tray" "notifications" "clipboard" "caffeine" "volume" "control-center" "session" ];
+        start = [
+          "launcher"
+          "group:g1"
+          "workspaces"
+        ];
+        center = [
+          "clock"
+          "wallpaper"
+        ];
+        end = [
+          "tray"
+          "notifications"
+          "clipboard"
+          "caffeine"
+          "volume"
+          "control-center"
+          "session"
+        ];
         capsule_group = [
           {
             id = "g1";
             fill = "surface_variant";
-            members = [ "cpu" "ram" "temp" ];
+            members = [
+              "cpu"
+              "ram"
+              "temp"
+            ];
             opacity = 1.0;
             padding = 6.0;
           }
@@ -85,7 +104,10 @@
       lockscreen_widgets = {
         enabled = false;
         schema_version = 2;
-        widget_order = [ "lockscreen-login-box@HDMI-A-1" "lockscreen-login-box@DP-2" ];
+        widget_order = [
+          "lockscreen-login-box@HDMI-A-1"
+          "lockscreen-login-box@DP-2"
+        ];
         grid = {
           cell_size = 16;
           major_interval = 4;
@@ -185,10 +207,26 @@
         };
 
         session.actions = [
-          { action = "lock"; enabled = true; variant = "default"; }
-          { action = "logout"; enabled = true; variant = "default"; }
-          { action = "shutdown"; enabled = true; variant = "destructive"; }
-          { action = "reboot"; enabled = true; variant = "default"; }
+          {
+            action = "lock";
+            enabled = true;
+            variant = "default";
+          }
+          {
+            action = "logout";
+            enabled = true;
+            variant = "default";
+          }
+          {
+            action = "reboot";
+            enabled = true;
+            variant = "default";
+          }
+          {
+            action = "shutdown";
+            enabled = true;
+            variant = "destructive";
+          }
         ];
       };
 
@@ -211,7 +249,14 @@
       wallpaper = {
         enabled = true;
         fill_mode = "crop";
-        transition = [ "fade" "wipe" "disc" "stripes" "zoom" "honeycomb" ];
+        transition = [
+          "fade"
+          "wipe"
+          "disc"
+          "stripes"
+          "zoom"
+          "honeycomb"
+        ];
         transition_duration = 1500;
         directory = "/home/srie/Pictures/Wallpapers";
         automation = {
@@ -221,17 +266,17 @@
           recursive = true;
         };
         default = {
-          path = "/home/srie/Pictures/Wallpapers/a_blue_wall_with_a_balcony_and_a_door.jpg";
+          path = "/home/srie/Pictures/Wallpapers/a_group_of_wooden_posts_in_water.jpg";
         };
         last = {
-          path = "/home/srie/Pictures/Wallpapers/a_blue_wall_with_a_balcony_and_a_door.jpg";
+          path = "/home/srie/Pictures/Wallpapers/a_group_of_wooden_posts_in_water.jpg";
         };
         monitors = {
           "DP-2" = {
-            path = "/home/srie/Pictures/Wallpapers/a_blue_wall_with_a_balcony_and_a_door.jpg";
+            path = "/home/srie/Pictures/Wallpapers/a_road_leading_to_mountains.jpg";
           };
           "HDMI-A-1" = {
-            path = "/home/srie/Pictures/Wallpapers/a_blue_wall_with_a_balcony_and_a_door.jpg";
+            path = "/home/srie/Pictures/Wallpapers/a_group_of_wooden_posts_in_water.jpg";
           };
         };
       };

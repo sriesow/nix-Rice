@@ -8,6 +8,7 @@
     ./modules/fonts.nix
     ./modules/packages.nix
     ./modules/remote-access.nix
+    ./modules/virt.nix
   ];
 
   boot.loader = {
@@ -94,7 +95,7 @@
   users.users.srie = {
     isNormalUser = true;
     description = "srie";
-    extraGroups = [ "networkmanager" "wheel" "video" "docker" "vboxsf" "input" ];
+    extraGroups = [ "networkmanager" "wheel" "video" "docker" "vboxsf" "input" "libvirtd" "kvm" ];
     shell = pkgs.fish;
   };
 
@@ -103,9 +104,10 @@
 
   nixpkgs.config.allowUnfree = true;
   nixpkgs.config.permittedInsecurePackages = [ "openssl-1.1.1w" ];
-  # electron_39 is EOL/insecure; override consumers onto the latest safe electron.
+  # electron_39 is EOL/insecure; override consumers onto a newer electron.
+  # Use the prebuilt -bin variant — plain electron_40 builds chromium from source (hours).
   nixpkgs.overlays = [
-    (final: prev: { electron_39 = prev.electron_40; })
+    (final: prev: { electron_39 = prev.electron_40-bin; })
   ];
 
   nix.settings = {

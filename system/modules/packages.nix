@@ -20,6 +20,7 @@ in
     nodejs_22
     jdk25
     gradle
+    maven
     gh
 
     # Wayland/Niri
