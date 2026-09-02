@@ -13,7 +13,7 @@
   # Mirrors the exported default config from the running shell.
   programs.noctalia = {
     enable = true;
-    validateConfig = true;
+    checkConfig = true;
 
     settings = {
       audio = {

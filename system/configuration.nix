@@ -95,7 +95,7 @@
   users.users.srie = {
     isNormalUser = true;
     description = "srie";
-    extraGroups = [ "networkmanager" "wheel" "video" "docker" "vboxsf" "input" "libvirtd" "kvm" ];
+    extraGroups = [ "networkmanager" "wheel" "video" "docker" "input" "libvirtd" "kvm" ];
     shell = pkgs.fish;
   };
 

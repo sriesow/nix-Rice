@@ -29,6 +29,18 @@
       fsType = "ext4";
     };
 
+  fileSystems."/mnt/data1" =
+    { device = "/dev/disk/by-uuid/EAFC-D22D";
+      fsType = "exfat";
+      options = [ "uid=1000" "gid=100" "umask=0022" "nofail" ];
+    };
+
+  fileSystems."/mnt/data2" =
+    { device = "/dev/disk/by-uuid/6E7F-F22D";
+      fsType = "exfat";
+      options = [ "uid=1000" "gid=100" "umask=0022" "nofail" ];
+    };
+
   swapDevices =
     [ { device = "/dev/disk/by-uuid/c07b8756-52d1-4f81-b852-3c7b1d915408"; }
     ];

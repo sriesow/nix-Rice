@@ -14,9 +14,14 @@
       url = "github:noctalia-dev/noctalia-shell";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
+
+    openlogi = {
+      url = "github:AprilNEA/OpenLogi";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
 
-  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, noctalia, ... }@inputs:
+  outputs = { self, nixpkgs, nixpkgs-unstable, home-manager, noctalia, openlogi, ... }@inputs:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -33,24 +38,6 @@
     in
     {
       nixosConfigurations = {
-        # VirtualBox configuration (testing)
-        nixos-vbox = nixpkgs.lib.nixosSystem {
-          inherit system;
-          specialArgs = { inherit inputs pkgs-unstable; };
-          modules = [
-            ./system/configuration.nix
-            ./system/modules/virtualbox.nix
-
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users.srie = import ./home/home.nix;
-              home-manager.extraSpecialArgs = { inherit inputs pkgs-unstable; };
-            }
-          ];
-        };
-
         # Workstation configuration (production)
         nixos-workstation = nixpkgs.lib.nixosSystem {
           inherit system;
@@ -58,6 +45,9 @@
           modules = [
             ./system/configuration.nix
             ./system/modules/workstation.nix
+
+            openlogi.nixosModules.default
+            { programs.openlogi.enable = true; }
 
             home-manager.nixosModules.home-manager
             {

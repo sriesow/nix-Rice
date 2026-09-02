@@ -39,4 +39,8 @@
     "with-ldflags=-L${pkgs.libvirt}/lib with-libvirt-include=${pkgs.libvirt}/include/libvirt with-libvirt-lib=${pkgs.libvirt}/lib";
 
   environment.variables.VAGRANT_DEFAULT_PROVIDER = "libvirt";
+
+  # NixOS has no /usr/share/OVMF — point vagrant-libvirt at nix-store firmware
+  environment.variables.VAGRANT_LIBVIRT_OVMF_CODE = "${pkgs.OVMF.fd}/FV/OVMF_CODE.fd";
+  environment.variables.VAGRANT_LIBVIRT_OVMF_VARS = "${pkgs.OVMF.fd}/FV/OVMF_VARS.fd";
 }

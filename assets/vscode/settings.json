@@ -20,5 +20,6 @@
   "liveServer.settings.donotShowInfoMsg": true,
   "terminal.integrated.env.linux": {
     "TMPDIR": "/home/srie/.claude/tmp"
-  }
+  },
+  "terminal.integrated.fontSize": 15
 }

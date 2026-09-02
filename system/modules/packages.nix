@@ -43,7 +43,6 @@ in
     mpv
     slack
     postman
-    solaar
     remmina
     loupe
     papers
@@ -77,6 +76,7 @@ in
     google-cloud-sql-proxy
     azure-cli
     awscli2
+    ssm-session-manager-plugin
     kubectl
     terraform
 

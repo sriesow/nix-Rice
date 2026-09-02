@@ -7,6 +7,7 @@
     shellInit = ''
       set fish_greeting
       set -gx COLORTERM truecolor
+      fish_add_path -g $HOME/.local/bin
     '';
 
     interactiveShellInit = ''
