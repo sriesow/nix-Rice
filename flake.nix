@@ -10,10 +10,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    noctalia = {
-      url = "github:noctalia-dev/noctalia-shell";
-      inputs.nixpkgs.follows = "nixpkgs-unstable";
-    };
+    noctalia.url = "github:noctalia-dev/noctalia-shell";
 
     openlogi = {
       url = "github:AprilNEA/OpenLogi";
@@ -47,7 +44,10 @@
             ./system/modules/workstation.nix
 
             openlogi.nixosModules.default
-            { programs.openlogi.enable = true; }
+            {
+              programs.openlogi.enable = true;
+              programs.openlogi.package = pkgs.callPackage ./system/modules/openlogi-package.nix { };
+            }
 
             home-manager.nixosModules.home-manager
             {

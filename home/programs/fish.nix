@@ -175,7 +175,7 @@
       "..." = "cd ../..";
       "...." = "cd ../../..";
       "nixos-rebuild" = "sudo nixos-rebuild switch --flake /home/srie/Documents/nix-Rice#nixos-workstation";
-      "nixos-update" = "cd /home/srie/Documents/nix-Rice && nix flake update && sudo nixos-rebuild switch --flake .#nixos-workstation";
+      "nixos-update" = "cd /home/srie/Documents/nix-Rice && bash system/modules/update-openlogi.sh && nix flake update && sudo nixos-rebuild switch --flake .#nixos-workstation";
     };
   };
 }
