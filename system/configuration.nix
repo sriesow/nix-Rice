@@ -88,6 +88,37 @@
         "bluez5.enable-hw-volume" = true;
       };
     };
+    # NVIDIA HDMI/DP audio: normal profiles expose one monitor at a time,
+    # pro-audio exposes all. Hide unconnected outputs, name the live ones.
+    wireplumber.extraConfig."20-nvidia-hdmi" = {
+      "monitor.alsa.rules" = [
+        {
+          matches = [ { "device.name" = "alsa_card.pci-0000_01_00.1"; } ];
+          actions.update-props."device.profile" = "pro-audio";
+        }
+        {
+          matches = [ { "node.name" = "alsa_output.pci-0000_01_00.1.pro-output-3"; } ];
+          actions.update-props = {
+            "node.description" = "BenQ GW2780";
+            "node.nick" = "BenQ GW2780";
+          };
+        }
+        {
+          matches = [ { "node.name" = "alsa_output.pci-0000_01_00.1.pro-output-7"; } ];
+          actions.update-props = {
+            "node.description" = "LG Ultrawide";
+            "node.nick" = "LG Ultrawide";
+          };
+        }
+        {
+          matches = [
+            { "node.name" = "alsa_output.pci-0000_01_00.1.pro-output-8"; }
+            { "node.name" = "alsa_output.pci-0000_01_00.1.pro-output-9"; }
+          ];
+          actions.update-props."node.disabled" = true;
+        }
+      ];
+    };
   };
 
   users.users.srie = {

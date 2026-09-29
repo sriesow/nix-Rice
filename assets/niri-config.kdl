@@ -36,6 +36,7 @@ input {
 }
 
 spawn-at-startup "noctalia"
+spawn-at-startup "openlogi-agent"
 
 hotkey-overlay {
     skip-at-startup
@@ -90,6 +91,22 @@ window-rule {
 window-rule {
     match app-id=r#"firefox|brave-browser|google-chrome|org\.gnome\.Nautilus"#
     opacity 0.95
+}
+
+// OpenLogi Actions Ring. GPUI implements no zwlr_layer_shell_v1, so the overlay
+// arrives as an ordinary xdg_toplevel and Niri tiles it like any other window.
+// Float it, strip every bit of chrome, and undo the global corner clip — the
+// ring is a transparent radial surface and rounded clipping eats its edges.
+window-rule {
+    match app-id=r#"^openlogi-action-ring$"#
+    open-floating true
+    open-focused true
+    border { off; }
+    focus-ring { off; }
+    shadow { off; }
+    geometry-corner-radius 0
+    clip-to-geometry false
+    draw-border-with-background false
 }
 
 animations {
@@ -200,6 +217,21 @@ binds {
     Mod+M { maximize-column; }
     Mod+Comma { consume-window-into-column; }
     Mod+Period { expel-window-from-column; }
+
+    // Actions Ring targets. OpenLogi's custom-shortcut parser rejects Super, so
+    // these use only ctrl/alt/shift — the modifiers that survive its
+    // macOS->Linux modifier-bit conversion. Nothing on the keyboard emits these
+    // chords; they arrive solely from OpenLogi's uinput injector, so claiming
+    // them globally costs nothing. Shift is deliberate: it breaks the
+    // Ctrl+Alt+F<n> pattern the kernel uses for VT switching.
+    // Ring slots Right and BottomRight send plain Ctrl+V / Ctrl+C straight to
+    // the focused app and are deliberately absent here.
+    Ctrl+Alt+Shift+F1 { toggle-overview; }                                   // Top
+    Ctrl+Alt+Shift+F2 { maximize-column; }                                   // TopRight
+    Ctrl+Alt+Shift+F3 { spawn "noctalia" "msg" "panel-toggle" "launcher"; }   // Bottom
+    Ctrl+Alt+Shift+F4 { spawn "noctalia" "msg" "panel-toggle" "clipboard"; }  // BottomLeft
+    Ctrl+Alt+Shift+F5 { spawn "sh" "-c" "grim -g \"$(slurp)\" - | tee \"$HOME/Pictures/Screenshots/screenshot-$(date +%Y%m%d-%H%M%S).png\" | wl-copy --type image/png"; } // Left
+    Ctrl+Alt+Shift+F6 { close-window; }                                      // TopLeft
 
     // Session
     Mod+Shift+E { quit; }

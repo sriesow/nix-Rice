@@ -24,5 +24,6 @@
   "terminal.integrated.fontSize": 15,
   "claudeCode.hideOnboarding": true,
   "gitlens.ai.model": "vscode",
-  "gitlens.ai.vscode.model": "copilot:gpt-4.1"
+  "gitlens.ai.vscode.model": "copilot:gpt-4.1",
+  "security.workspace.trust.untrustedFiles": "open"
 }
