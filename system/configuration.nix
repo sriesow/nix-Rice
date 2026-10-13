@@ -49,6 +49,8 @@
   hardware.uinput.enable = true;
   services.upower.enable = true;
   services.power-profiles-daemon.enable = true;
+  # Intel thermal management daemon (i7-9700K runs hot under load)
+  services.thermald.enable = true;
 
   time.timeZone = "Asia/Kolkata";
   i18n.defaultLocale = "en_IN";

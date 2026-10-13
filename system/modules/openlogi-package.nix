@@ -3,7 +3,7 @@
 }:
 
 let
-  version = "0.8.9";
+  version = "0.8.13";
 in
 stdenv.mkDerivation {
   pname = "openlogi";
@@ -11,7 +11,7 @@ stdenv.mkDerivation {
 
   src = fetchurl {
     url = "https://github.com/AprilNEA/OpenLogi/releases/download/v${version}/openlogi-v${version}-linux-amd64.pkg.tar.zst";
-    sha256 = "fa3f2a0d0ed0ee711742f7e436e0cd2ce2b3789b99171611f124e46cbd464897";
+    sha256 = "49406ec7107d9faf409dcf2cbec4beec69c025fa5ae8be45a865f50824db0afc";
   };
 
   nativeBuildInputs = [ autoPatchelfHook zstd patchelf ];

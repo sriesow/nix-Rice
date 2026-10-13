@@ -28,7 +28,7 @@
 
   home.packages = with pkgs; [
     logseq
-    sublime4
+    pkgs-unstable.sublime4
     zoxide
     eza
   ];
