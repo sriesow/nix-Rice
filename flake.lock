@@ -39,11 +39,11 @@
     },
     "nixpkgs-unstable": {
       "locked": {
-        "lastModified": 1791734076,
-        "narHash": "sha256-i5qk1kLiit98rRbh1AXmWBNT9QXC/y4l5Wk/u5EdpDQ=",
+        "lastModified": 1793726008,
+        "narHash": "sha256-jQp1wKvbwWdLBASTXkSi/VYmDJ5AbBi1WvcMt9HWJC8=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "7fd4004d0511991fff3a0524856a9be09e28c5f0",
+        "rev": "1d060086d60cb76a40cf37109f979d88a5bd6396",
         "type": "github"
       },
       "original": {
@@ -55,11 +55,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1791594108,
-        "narHash": "sha256-V0WmebqwEeAVZMqxfv7Dq7hpKkPPM19W50xQf3D1Kf4=",
-        "rev": "6510408d147d8c5e6d76043e899e9251756f6a75",
+        "lastModified": 1793341285,
+        "narHash": "sha256-LOv16TsMYV2/8BUYnhSxHkOASe7es2ORbqMeLlZJ8Hc=",
+        "rev": "1c89083e451e891152365b799595cf7790a43325",
         "type": "tarball",
-        "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1089111.6510408d147d/nixexprs.tar.zst"
+        "url": "https://releases.nixos.org/nixos/unstable/nixos-26.11pre1105037.1c89083e451e/nixexprs.tar.zst"
       },
       "original": {
         "type": "tarball",
@@ -71,11 +71,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1791852984,
-        "narHash": "sha256-dxH7jjA9EZDo1x5P8wgJbykOSWQj1Q2AgxQhdN/NeyM=",
+        "lastModified": 1793931395,
+        "narHash": "sha256-o/fiSqoNlQrGcg/MaDMtDXtssBYDLFdr5XKc1qh0EvA=",
         "owner": "noctalia-dev",
         "repo": "noctalia-shell",
-        "rev": "0c8808e8392b49385459422ce14ff28e2c2aed83",
+        "rev": "316b4ee37014fa6891a49d3611a63dfc7a9aa813",
         "type": "github"
       },
       "original": {
@@ -92,14 +92,16 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1791834108,
-        "narHash": "sha256-gqI21hTTfVvfAlUJbXlIvqY3kQVPK1OrCiWcvd3GbXk=",
+        "dir": "packaging",
+        "lastModified": 1793958707,
+        "narHash": "sha256-0hLq9rtyoSGIkbCOXmda5fNsVLTmFg7sEcqL5/D3alE=",
         "owner": "AprilNEA",
         "repo": "OpenLogi",
-        "rev": "01749f92d06c112a14333c27398c293985b17801",
+        "rev": "548b843b0607bcb7f9050764ce94b514590f3c02",
         "type": "github"
       },
       "original": {
+        "dir": "packaging",
         "owner": "AprilNEA",
         "repo": "OpenLogi",
         "type": "github"
@@ -122,11 +124,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1790756160,
-        "narHash": "sha256-NPs4nNLxCpho3Ctj8O7t/bzmX0zR8r0zndKghAFEz5U=",
+        "lastModified": 1792219666,
+        "narHash": "sha256-RMO08tKD+hFIL5ryWi85VY4aHE5oIpdV1h4kVFctOkw=",
         "owner": "oxalica",
         "repo": "rust-overlay",
-        "rev": "ed3a19fd0439ed618ec5fe1e12f0ba69a8be38b5",
+        "rev": "a110337465cfb76e3806b81b9db3094c3e6e770a",
         "type": "github"
       },
       "original": {

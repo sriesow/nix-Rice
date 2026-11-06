@@ -13,7 +13,7 @@
     noctalia.url = "github:noctalia-dev/noctalia-shell";
 
     openlogi = {
-      url = "github:AprilNEA/OpenLogi";
+      url = "github:AprilNEA/OpenLogi?dir=packaging";
       inputs.nixpkgs.follows = "nixpkgs-unstable";
     };
   };
